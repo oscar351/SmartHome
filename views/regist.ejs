@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<link rel='stylesheet' href='/stylesheets/regist.css' />
+</head>
+<body>
+    <fieldset id="join-form">
+        <form>
+        <label class="legend"><strong>아이디</strong></label>
+        <input name="userid" type="text" class="text" id="id" maxlength="12">
+        <button type="submit" id="check">중복확인</button>
+        </form>
+        <label class="legend"><strong>비밀번호</strong></label>
+        <input name="password" type="password" class="text" maxlength="12">
+        <label class="legend"><strong>비밀번호 재확인</strong></label>
+        <input name="password" type="password" class="text" maxlength="20">
+        <label class="legend"><strong>이름</strong></label>
+        <input name="name" type="text" class="text">
+        <label class="legend"><strong>이메일</strong></label>
+        <input name="name" type="text" class="text">
+        <label class="legend"><strong>생년월일</strong></label>
+			<input name="birth" type="text" class="birth" placeholder="년(4자)" maxlength="4">
+			<label><strong>년</strong></label>
+			<select>
+				<option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+			</select>
+			<label><strong>월</strong></label>
+            <input name="day" type="text" class="birth" maxlength="2">
+			<label><strong>일</strong></label>
+        <fieldset>
+            <label class="legend"><strong>성별</strong></label>
+            <select class="gender">
+                <option>선택하여주세요.</option>
+				<option value="f">남자</option>
+                <option value="m">여자</option>
+                <option value="no">선택안함</option>
+			</select>
+        </fieldset>
+        <input name="go" type="button" class="go" value="가입하기" onclick="Yes()">
+    </fieldset>
+</body>
+</html>

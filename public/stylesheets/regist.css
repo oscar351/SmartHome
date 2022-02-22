@@ -1,0 +1,48 @@
+*   {margin: 0; padding: 0;}
+
+#join-form{
+    width:600px;
+    margin:50px auto;
+    padding:50px;
+    border: 1px solid black;
+    font-family: '맑은고딕', '돋움';
+    text-align: center;
+}
+label.legend, legend strong{
+    display: block;
+    margin-top:10px;
+    text-align: left;
+}
+
+label.legend{
+    margin-left: 150px;
+}
+fieldset{border: none;
+padding-bottom: 10px;}
+.text{
+    width:50%;
+    padding:10px;
+    margin:5px 0;
+    border-radius:5px;
+}
+.gender{
+    width: 225px;
+    height: 40px;
+}
+.birth{
+    width: 50px;
+}
+.go{
+    width: 225px;
+    height: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: white;
+}
+.logo{
+    padding-bottom: 50px;
+    width: 225px;
+    vertical-align:super;
+}

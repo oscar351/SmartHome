@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>MB<br>Sweet Home</h1>
+    <fieldset>
+    <form action="/" method="POST" class="login">
+      <div>
+      <legend>회원 로그인</legend>
+      <input type="text" id="user_id" name="user_id" placeholder="ID">
+      <input type="password" id="password" name="password" placeholder="Password">
+      <button type="submit" class="btLogin">로그인</button>
+      </form>
+      <form action="/regist" method="POST">
+      <button type="submit" class="mkid">회원가입</button>
+      </form>
+      <form action="/findUser" method="POST">
+      <button type="submit" class="search">아이디 / 비밀번호 찾기</button>
+      </form>
+      </div>
+     </fieldset>
+  </body>
+</html>
