@@ -7,15 +7,19 @@
 </head>
 <body>
     <fieldset id="join-form">
+        <h1>MB<br>Sweet Home</h1>
         <form>
         <label class="legend"><strong>아이디</strong></label>
         <input name="userid" type="text" class="text" id="id" maxlength="12">
-        <button type="submit" id="check">중복확인</button>
+        <p id="checkid"></p>
         </form>
+        <form>
         <label class="legend"><strong>비밀번호</strong></label>
         <input name="password" type="password" class="text" maxlength="12">
         <label class="legend"><strong>비밀번호 재확인</strong></label>
         <input name="password" type="password" class="text" maxlength="20">
+        <p id="checkpw"></p>
+        </form>
         <label class="legend"><strong>이름</strong></label>
         <input name="name" type="text" class="text">
         <label class="legend"><strong>이메일</strong></label>
@@ -40,15 +44,11 @@
 			<label><strong>월</strong></label>
             <input name="day" type="text" class="birth" maxlength="2">
 			<label><strong>일</strong></label>
-        <fieldset>
-            <label class="legend"><strong>성별</strong></label>
-            <select class="gender">
-                <option>선택하여주세요.</option>
-				<option value="f">남자</option>
-                <option value="m">여자</option>
-                <option value="no">선택안함</option>
-			</select>
-        </fieldset>
+        <label class="legend"><strong>전화번호</strong></label>
+        <div class="number">
+        <input name="name" type="text" class="fnum" value="010" readonly>-
+        <input name="name" type="text" class="pnum" maxlength="8">
+        </div>
         <input name="go" type="button" class="go" value="가입하기" onclick="Yes()">
     </fieldset>
 </body>
