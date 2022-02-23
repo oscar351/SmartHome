@@ -8,18 +8,15 @@
 <body>
     <fieldset id="join-form">
         <h1>MB<br>Sweet Home</h1>
-        <form>
+        <form method="post">
         <label class="legend"><strong>아이디</strong></label>
         <input type="text" class="text" id="id" name="id" maxlength="12" required>
         <p id="checkid"></p>
-        </form>
-        <form>
         <label class="legend"><strong>비밀번호</strong></label>
         <input type="password" class="text" maxlength="12" name="password" required>
         <label class="legend"><strong>비밀번호 재확인</strong></label>
         <input type="password" class="text" maxlength="20" name="password2" required>
         <p id="checkpw"></p>
-        </form>
         <label class="legend"><strong>이름</strong></label>
         <input type="text" class="text" name="name" required>
         <label class="legend"><strong>이메일</strong></label>
@@ -50,6 +47,7 @@
         <input name="pnumber" type="text" class="pnum" maxlength="8" required>
         </div>
         <input name="go" type="submit" class="go" value="가입하기">
+	</form>
     </fieldset>
 </body>
 </html>

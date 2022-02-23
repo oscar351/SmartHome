@@ -14,7 +14,7 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.0",
     "ejs": "^2.6.2",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-session": "^1.17.2",
     "fs": "^0.0.1-security",
     "http-errors": "~1.6.3",
