@@ -10,24 +10,24 @@
         <h1>MB<br>Sweet Home</h1>
         <form>
         <label class="legend"><strong>아이디</strong></label>
-        <input name="userid" type="text" class="text" id="id" maxlength="12">
+        <input type="text" class="text" id="id" name="id" maxlength="12" required>
         <p id="checkid"></p>
         </form>
         <form>
         <label class="legend"><strong>비밀번호</strong></label>
-        <input name="password" type="password" class="text" maxlength="12">
+        <input type="password" class="text" maxlength="12" name="password" required>
         <label class="legend"><strong>비밀번호 재확인</strong></label>
-        <input name="password" type="password" class="text" maxlength="20">
+        <input type="password" class="text" maxlength="20" name="password2" required>
         <p id="checkpw"></p>
         </form>
         <label class="legend"><strong>이름</strong></label>
-        <input name="name" type="text" class="text">
+        <input type="text" class="text" name="name" required>
         <label class="legend"><strong>이메일</strong></label>
-        <input name="name" type="text" class="text">
+        <input type="text" class="text" name="email">
         <label class="legend"><strong>생년월일</strong></label>
-			<input name="birth" type="text" class="birth" placeholder="년(4자)" maxlength="4">
+			<input name="birth" type="text" class="birth" placeholder="년(4자)" maxlength="4" required>
 			<label><strong>년</strong></label>
-			<select>
+			<select name="month" required>
 				<option value="01">01</option>
                 <option value="02">02</option>
                 <option value="03">03</option>
@@ -42,14 +42,14 @@
                 <option value="12">12</option>
 			</select>
 			<label><strong>월</strong></label>
-            <input name="day" type="text" class="birth" maxlength="2">
+            <input name="day" type="text" class="birth" maxlength="2" required>
 			<label><strong>일</strong></label>
         <label class="legend"><strong>전화번호</strong></label>
         <div class="number">
-        <input name="name" type="text" class="fnum" value="010" readonly>-
-        <input name="name" type="text" class="pnum" maxlength="8">
+        <input type="text" class="fnum" value="010" readonly>-
+        <input name="pnumber" type="text" class="pnum" maxlength="8" required>
         </div>
-        <input name="go" type="button" class="go" value="가입하기" onclick="Yes()">
+        <input name="go" type="submit" class="go" value="가입하기">
     </fieldset>
 </body>
 </html>

@@ -1,3 +1,4 @@
+var fs = require('fs');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -5,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var cors = require('cors');
+var crypto = require("crypto");
+var FileStore = require('session-file-store')(session);
 var dotenv = require('dotenv');
 var bodyParser = require('body-parser');
 
@@ -25,6 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: 'blackzat',
+  resave: false,
+  saveUninitialized: true,
+  store : new FileStore()
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
