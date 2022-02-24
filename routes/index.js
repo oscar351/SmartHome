@@ -142,6 +142,21 @@ router.post('/regist', function(req, res, next) {
 	}
   })
 });
+
+router.post('/checkid', (req,res)=>{
+  var userID = req.body.userID;
+  var result = 0;
+
+  client.query('select * from login where id=?', [userID],(err,data)=>{
+    if(data.length == 0){
+      result = 1;
+    }else{
+      result = 0;
+    }
+    res.json(result);
+  });
+});
+
 router.get('/logout',(req,res)=>{
   console.log('로그아웃 성공');
   req.session.destroy(function(err){

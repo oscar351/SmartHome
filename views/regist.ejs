@@ -5,13 +5,48 @@
 <title>회원가입</title>
 <link rel='stylesheet' href='/stylesheets/regist.css' />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
 </head>
 <body>
     <fieldset id="join-form">
         <h1>MOBLE<br>Sweet Home</h1>
         <form method="post" name="form">
         <label class="legend"><strong>아이디</strong></label>
-        <input type="text" class="text" id="id" name="id" maxlength="12" required>
+        <input type="text" class="text" id="id" name="id" maxlength="12" required><br>
+        <p id="userid_msg1">* 중복된 아이디입니다.</p>
+        <p id="userid_msg2">* 사용 가능한 아이디입니다.</p>
+        <script type="text/javascript">
+            $("#userid_msg1").hide();
+            $("#userid_msg2").hide();
+            const btn = document.querySelector('#checkid');
+            const userid = document.querySelector('#id');
+            $('#id').focusout(function(){
+                let userID = $('#id').val();
+        
+                $.ajax({
+                    url : "checkid",
+                    type : "post",
+                    data : {userID: userID},
+                    dataType : 'json',
+                    success : function(result){
+                        if(result == 0){
+                            $('#userid_msg1').show();
+                            $("#userid_msg2").hide();
+                            $("#go").attr("disabled", "disabled");
+                        }else{
+                            $('#userid_msg2').show();
+                            $("#userid_msg1").hide();
+                            $("#go").removeAttr("disabled");
+                        }
+                    },
+                    error : function(){
+                        alert("서버요청실패");
+                    }
+                });
+            });
+        
+        </script>
         <label class="legend"><strong>비밀번호</strong></label>
         <input type="password" id="password1" class="text" maxlength="12" name="password" required>
         <label class="legend"><strong>비밀번호 재확인</strong></label>
