@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>아이디 / 비밀번호 찾기</title>
-    <link rel='stylesheet' href='/stylesheets/findUser.css' />
-  </head>
-  <body>
-
-  </body>
+<head>
+<meta charset="UTF-8">
+<title>아이디 / 비밀번호 찾기</title>
+<link rel='stylesheet' href='/stylesheets/findUser.css' />
+</head>
+<body>
+    <fieldset id="join-form">
+        <h1>MB<br>Sweet Home</h1>
+        <form action="/findid" method="post">
+          <label class="legend"><strong>아이디 찾기</strong></label>
+          <div>
+          <label class="legend"><strong>이메일</strong></label>
+          <input type="text" class="text" id="id" name="findemail" maxlength="20" required>
+          <input name="go" type="submit" class="go" value="검색">
+        </div>
+        </form>
+        <form action="/findpw" method="post">
+          <label class="legend"><strong>비밀번호 찾기</strong></label>
+          <div>
+        <label class="legend"><strong>아이디</strong></label>
+        <input type="text" class="text" name="findID" required>
+        <label class="legend"><strong>이름</strong></label>
+        <input type="text" class="text" name="findname" required>
+        <input name="go" type="submit" class="go" value="검색">
+        </div>
+	      </form>
+        <form action="gomain" method="get">
+        <input type="submit" class="gohome" value="홈">
+        </form>
+    </fieldset>
+</body>
 </html>

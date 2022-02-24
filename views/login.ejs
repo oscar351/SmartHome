@@ -5,9 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>MB<br>Sweet Home</h1>
+    <form action="/gomain" method="GET">
+    <h1>MoBle<br>Sweet Home</h1>
+    </form>
     <fieldset>
-    <form method="POST" class="login">
+    <form method="post" class="login">
       <div>
       <legend>회원 로그인</legend>
       <input type="text" id="user_id" name="user_id" placeholder="ID" required>
@@ -17,7 +19,7 @@
       <form action="/regist" method="GET">
       <button type="submit" class="mkid">회원가입</button>
       </form>
-      <form action="/findUser" method="POST">
+      <form action="/findUser" method="get">
       <button type="submit" class="search">아이디 / 비밀번호 찾기</button>
       </form>
       </div>

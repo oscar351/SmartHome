@@ -1,8 +1,57 @@
-*{margin:0;padding:0;}
+*   {margin: 0; padding: 0;}
 
+#join-form{
+    width:600px;
+    margin:90px auto;
+    padding:50px;
+    border: 1px solid black;
+    font-family: '맑은고딕', '돋움';
+    text-align: center;
+}
+h1{
+    padding-bottom: 20px;
+}
+label.legend, legend strong{
+    display: block;
+    margin-top:10px;
+    text-align: left;
+}
 
-body {
-  padding: 100px;
-  margin: 100px 0 0 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+label.legend{
+    margin-left: 100px;
+}
+fieldset{border: none;
+padding-bottom: 10px;}
+
+.text{
+    width:50%;
+    padding:10px;
+    margin:5px 0;
+    border-radius:5px;
+}
+.go{
+    width: 310px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+div{
+    border: 1px solid black;
+    margin: 0px 90px 20px 90px;
+}
+
+.gohome{
+    width: 100px;
+    height: 40px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
 }

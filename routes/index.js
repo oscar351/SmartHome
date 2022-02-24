@@ -62,8 +62,52 @@ router.post('/', function(req,res,next){
 });
 });
 
-router.post('/findUser', function(req, res, next) {
+router.get('/findUser', function(req, res, next) {
+  console.log('아이디 / 비밀번호 찾기 페이지');
   res.render('findUser');
+});
+
+router.post('/findid', function(req, res, next) {
+  const body = req.body;
+  const email = body.findemail;
+
+  client.query('select * from login where email=?',[email],(err,data) =>{
+    if(data.length == 0){
+      console.log('데이터 없음');
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script>alert("일치하는 정보가 없습니다.")</script>');
+      res.write('<script>window.location="../findUser"</script>');
+      res.end();
+    }else{
+	console.log('데이터 검색 완료!');
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script>alert("회원님의 아이디 : ' + data[0].id + '")</script>');
+      res.write('<script>window.location="../findUser"</script>');
+      res.end();
+	}
+  });
+});
+
+router.post('/findpw', function(req, res, next) {
+  const body = req.body;
+  const id = body.findID;
+  const name = body.findname;
+
+  client.query('select * from login where id=? and name=?',[id, name],(err,data) =>{
+    if(data.length == 0){
+      console.log('데이터 없음');
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script>alert("일치하는 정보가 없습니다.")</script>');
+      res.write('<script>window.location="../findUser"</script>');
+      res.end();
+    }else{
+	console.log('데이터 검색 완료!');
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.write('<script>alert("회원님의 비밀번호 : ' + data[0].password + '")</script>');
+      res.write('<script>window.location="../findUser"</script>');
+      res.end();
+	}
+  });
 });
 
 router.get('/regist', function(req, res, next) {
@@ -105,4 +149,9 @@ router.get('/logout',(req,res)=>{
       res.redirect('/');
   });
 });
+
+router.get('/gomain', function(req, res, next) {
+  res.render('login');
+});
+
 module.exports = router;
