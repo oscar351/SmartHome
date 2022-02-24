@@ -121,9 +121,9 @@ router.post('/regist', function(req, res, next) {
   const id = body.id;
   const password = body.password;
   const name = body.name;
-  const birth = body.birth + body.month + body.day;
+  const birth = body.birth;
   const number = body.pnumber;
-  const email = body.email;
+  const email = body.email + '@' + body.email2;
 
   client.query('select * from login where id=?',[id],(err,data) =>{
     if(data.length == 0){

@@ -4,49 +4,80 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel='stylesheet' href='/stylesheets/regist.css' />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <fieldset id="join-form">
         <h1>MOBLE<br>Sweet Home</h1>
-        <form method="post">
+        <form method="post" name="form">
         <label class="legend"><strong>아이디</strong></label>
         <input type="text" class="text" id="id" name="id" maxlength="12" required>
-        <p id="checkid"></p>
         <label class="legend"><strong>비밀번호</strong></label>
-        <input type="password" class="text" maxlength="12" name="password" required>
+        <input type="password" id="password1" class="text" maxlength="12" name="password" required>
         <label class="legend"><strong>비밀번호 재확인</strong></label>
-        <input type="password" class="text" maxlength="20" name="password2" required>
-        <p id="checkpw"></p>
+        <input type="password" id="password2" class="text" maxlength="20" name="password2" required>
+        <p id="checkedpw">* 비밀번호가 일치합니다.</p>
+        <p id="notcheckpw">* 비밀번호가 일치하지 않습니다.</p>
         <label class="legend"><strong>이름</strong></label>
         <input type="text" class="text" name="name" required>
         <label class="legend"><strong>이메일</strong></label>
-        <input type="text" class="text" name="email">
+        <div class="dmail">
+        <div class="dmail2">
+        <input type="text" class="email" name="email">
+        <p class="email">@</p>
+        <input type="text" class="email" name="email2" id="emaddress" disabled value="주소 입력">
+        </div>
+        <select class="semail" id="semail">
+            <option value="00" selected>선택하세요</option>
+            <option value="naver.com">naver.com</option>
+            <option value="hanmail.net">hanmail.com</option>
+            <option value="nate.com">nate.com</option>
+            <option value="hotmaiil.com">hotmail.com</option>
+            <option value="gmail.com">gmail.com</option>
+            <option value="99">직접 입력</option>
+        </select>
+        </div>
+        <script type="text/javascript">
+            $('#semail').change(function(){
+                $("#semail option:selected").each(function(){
+                    if($(this).val() == '99'){
+                        $("#emaddress").val('');
+                        $("#emaddress").attr("disabled", false);
+                    }else{
+                        $("#emaddress").val($(this).text());
+                        $("#emaddress").attr("disabled", false);
+                    }
+                });
+            });
+        </script>
+        <br>
         <label class="legend"><strong>생년월일</strong></label>
-			<input name="birth" type="text" class="birth" placeholder="년(4자)" maxlength="4" required>
-			<label><strong>년</strong></label>
-			<select name="month" required>
-				<option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-			</select>
-			<label><strong>월</strong></label>
-            <input name="day" type="text" class="birth" maxlength="2" required>
-			<label><strong>일</strong></label>
+        <input type="date" name="birth" class="birth" required>
         <label class="legend"><strong>전화번호</strong></label>
         <div class="number">
         <input type="text" class="fnum" value="010" readonly>-
-        <input name="pnumber" type="text" class="pnum" maxlength="8" required>
+        <input name="pnumber" type="text" class="pnum" minlength="2" maxlength="8" required>
         </div>
-        <input name="go" type="submit" class="go" value="가입하기">
+        <input name="go" type="submit" class="go" id="go" value="가입하기">
+        <script>
+            $("#checkedpw").hide();
+            $("#notcheckpw").hide();
+            $("#password2").keyup(function(){
+                var pwd1 = $("#password1").val();
+                var pwd2 = $("#password2").val();
+                if(pwd1 != "" || pwd2 != ""){
+                    if(pwd1 == pwd2) {
+                        $("#checkedpw").show();
+                        $("#notcheckpw").hide();
+                        $("#go").removeAttr("disabled");
+                    }else{
+                        $("#checkedpw").hide();
+                        $("#notcheckpw").show();
+                        $("#go").attr("disabled", "disabled");
+                    }
+                }
+            });
+        </script>
 	</form>
     </fieldset>
 </body>
