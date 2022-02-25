@@ -3,10 +3,12 @@
   <head>
     <title>Hello</title>
     <link rel='stylesheet' href='/stylesheets/main.css' />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   </head>
   <body>
     <div id="top-logo">
-      <h1>Test</h1>
+      <h1>Moble<br>SweetHome</h1>
     </div>
       <div id="logout">
       <p><%=name %>님 환영합니다!</o>
@@ -21,21 +23,27 @@
         <p>조명</p>
       </div>
       <div id="left-led-data">
+        <div id="section">
         <label class="switch">
           <p>거실</p>
           <input type="checkbox" />
           <span class="clider round"></span>
         </label>
+        </div>
+        <div id="section">
         <label class="switch">
           <p>화장실</p>
           <input type="checkbox" />
           <span class="clider round"></span>
         </label>
+        </div>
+        <div id="section">
         <label class="switch">
           <p>방 1</p>
           <input type="checkbox" />
           <span class="clider round"></span>
         </label>
+        </div>
       </div>
     </div>
       <div id="left-fan">
@@ -62,7 +70,7 @@
     </div>
     <div id="right-btn">
       <div id="right-house">
-        <p>집</p>
+        <p id="right-name">집</p>
         <div id="right-house-data">
           <p>온도</p><p>00℃</p>
           <p>습도</p><p>00%</p>
@@ -70,9 +78,10 @@
         </div>
       </div>
       <div id="right-out">
-        <p>외부</p>
+        <p id="right-name">외부</p>
         <div id="right-out-data">
-          <p>API따와서 넣을곳</p>
+          <span class="weatherInfo"></span>
+          <img class="weatherIcon">
         </div>
       </div>
     </div>
