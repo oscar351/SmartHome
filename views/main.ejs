@@ -2,12 +2,80 @@
 <html>
   <head>
     <title>Hello</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/main.css' />
   </head>
   <body>
-    <form action="/logout">
-    <h1>Test</h1>
-    <button type="submit">로그아웃</button>
-    </form>
+    <div id="top-logo">
+      <h1>Test</h1>
+    </div>
+      <div id="logout">
+      <p><%=name %>님 환영합니다!</o>
+      <form action="/logout" id="lgbt">
+        <button type="submit">로그아웃</button>
+      </form>
+      </div>
+    <div id="container">
+    <div id="left-btn">
+      <div id="left-led">
+      <div id="left-led-name">
+        <p>조명</p>
+      </div>
+      <div id="left-led-data">
+        <label class="switch">
+          <p>거실</p>
+          <input type="checkbox" />
+          <span class="clider round"></span>
+        </label>
+        <label class="switch">
+          <p>화장실</p>
+          <input type="checkbox" />
+          <span class="clider round"></span>
+        </label>
+        <label class="switch">
+          <p>방 1</p>
+          <input type="checkbox" />
+          <span class="clider round"></span>
+        </label>
+      </div>
+    </div>
+      <div id="left-fan">
+        <div id="left-fan-name">
+          <p>환풍기</p>
+        </div>
+        <div id="left-fan-data">
+          <label class="switch">
+            환풍기 <input type="checkbox" />
+            <span class="clider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div id="center-btn">
+      <div id="center-camera">
+      <div id="center-camera-name">
+        <p>보안</p>
+      </div>
+      <div id="center-camera-data">
+        <p>카메라 들어갈 곳</p>
+      </div>
+      </div>
+    </div>
+    <div id="right-btn">
+      <div id="right-house">
+        <p>집</p>
+        <div id="right-house-data">
+          <p>온도</p><p>00℃</p>
+          <p>습도</p><p>00%</p>
+          <p>미세먼지</p><p>00</p>
+        </div>
+      </div>
+      <div id="right-out">
+        <p>외부</p>
+        <div id="right-out-data">
+          <p>API따와서 넣을곳</p>
+        </div>
+      </div>
+    </div>
+  </div>
   </body>
 </html>

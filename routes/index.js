@@ -41,16 +41,18 @@ router.post('/', function(req,res,next){
     if(cnt == 1){
         console.log('로그인 성공');
         // 세션에 추가
-        req.session.is_logined = true;
-        req.session.name = data.name;
-        req.session.id = data.id;
-        req.session.password = data.password;
-        req.session.save(function(){ // 세션 스토어에 적용하는 작업
-            res.render('main',{ // 정보전달
-                name : data[0].name,
-                id : data[0].id,
-                is_logined : true
-            });
+        client.query('select * from login where id=? and password=?',[user_id, user_password],(err,data)=>{
+          req.session.is_logined = true;
+          req.session.name = data[0].name;
+          req.session.id = data[0].id;
+          req.session.password = data[0].password;
+          req.session.save(function(){ // 세션 스토어에 적용하는 작업
+              res.render('main',{ // 정보전달
+                  name : data[0].name,
+                  id : data[0].id,
+                  is_logined : true
+              });
+        });
         });
     }else{
         console.log('로그인 실패');
