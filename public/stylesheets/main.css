@@ -13,6 +13,7 @@
     font-size: large;
 }
 
+
 #logout{
     position: absolute;
     right: 0;
@@ -118,4 +119,8 @@ margin: 10px;
 
 #fanicon{
     width: 150px;
+}
+
+#right-out-data{
+    background-color: aqua;
 }

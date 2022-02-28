@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Hello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet' href='/stylesheets/main.css' />
     <link rel='stylesheet' href='/stylesheets/toggle-switchy.css' />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -106,10 +108,87 @@
       <div id="right-out">
         <p id="right-name">외부</p>
         <div id="right-out-data">
-          <span class="weatherInfo"></span>
+          <span class="js-weather"></span>
           <img class="weatherIcon">
         </div>
       </div>
+      <script type="text/javascript">
+        
+        const weather = document.querySelector(".js-weather");
+        const weatherIconImg = document.querySelector('.weatherIcon');
+
+// coord : 좌표
+const API_KEY = "37f61a5b1124dd4e1907e2c6c53f8298";
+const COORDS = "coords";
+
+// function saveCoords(coordsObj){
+//     localStorage.setItem(COORDS, JSON.stringify(coordsObj));
+// };
+
+function getWeather(lat, lng){
+    fetch(
+        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`
+    ).then(function(response){
+        return response.json();
+    })
+    .then(function(json){
+        const temp = json.main.temp;
+        const place = json.name;
+        // 내가 더 추가해보기!
+        const skyCondition = json.weather[0].main;
+        const nation = json.sys.country;
+        weather.innerText = `${skyCondition} ${temp} @${place} in ${nation}`;
+        const weatherIcon = json.weather[0].icon;
+        const weatherIconAdrs = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+        weatherIconImg.setAttribute('src', weatherIconAdrs);
+    });
+}
+
+function handleGeoSuccess(position){
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    // key와 value 변수명이 같다면! 아래와 같이 표현 가능
+    const coordsObj = {
+        latitude,
+        longitude
+    };
+    // saveCoords(coordsObj);
+    getWeather(latitude, longitude);
+};
+
+function handleGeoError(){
+    console.log("Can not access geo location");
+};
+
+function askForCoords(){
+  const options = {
+        enableHighAccuracy: true, // 대략적인 값이라도 상관 없음: 기본값
+        
+        maximumAge: 0,
+
+        timeout: 15000    // 15초 이상 기다리지 않는다.
+    };
+
+    navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError, options);
+};
+
+function loadCoords(){
+  const loadedcoords = localStorage.getItem(COORDS);
+  if(loadedcoords === null){
+      askForCoords();
+    }else{
+        //getWeather
+        const parseCoords = JSON.parse(loadedcoords);
+        getWeather(parseCoords.latitude, parseCoords.longitude);
+    }
+};
+
+function init(){
+    loadCoords();
+};
+
+init();
+      </script>
     </div>
   </div>
   </body>

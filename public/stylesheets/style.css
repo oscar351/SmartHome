@@ -6,9 +6,23 @@ fieldset{
   padding:50px;
   box-sizing:border-box;
   border: 0;
-  font-family: '맑은고딕', '돋움';
 }
 
+.logo{
+  width: 400px;
+  margin: 0 auto;
+  position: absolute;
+  top: 180px;
+  left: 750px;
+}
+.logindiv{
+  width: 645px;
+  display: block;
+  margin: 150px 500px 100px 500px;
+  background-color: white;
+  border-radius: 50px;
+  border: 25px solid #3a3a3a;
+}
 h1{
   text-align: center;
   font-size: 50px;
@@ -16,12 +30,16 @@ h1{
 body {
   height: 100%;
   padding: 100px;
-  margin: 100px 0 0 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 40px 0 0 0;
+  font-size: 14px;
+  font-family: 'Jua';
+  background-color: #dbaf84;
+  background-image: url("/stylesheets/image/loginimg.png");
+  background-size:cover;
 }
 legend{
   text-align: center;
-  font-size: 20px;
+  font-size: 35px;
   font-weight: bolder;
 }
 a {
@@ -38,6 +56,10 @@ input[type=text],input[type=password], .btLogin{
 }
 button{
   font-size: 14px;
+  height: 45px;
+  background-color: #02ceb3;
+  border-color: #02ceb3;
+  font-family: 'Jua';
 }
 .search, .mkid{
   display:block;

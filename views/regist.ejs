@@ -21,9 +21,9 @@
             $("#userid_msg2").hide();
             const btn = document.querySelector('#checkid');
             const userid = document.querySelector('#id');
-            $('#id').focusout(function(){
+            $('#id').keyup(function(){
                 let userID = $('#id').val();
-        
+                
                 $.ajax({
                     url : "checkid",
                     type : "post",
