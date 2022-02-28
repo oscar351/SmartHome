@@ -5,11 +5,10 @@
 }
 
 #top-logo{
-    border: 1px solid black;
     width: 100%;
     height: 100px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 15px;
     margin-bottom: 15px;
     font-size: large;
 }
@@ -58,6 +57,17 @@ margin: 10px;
     height: 92%;
 }
 
+.rhd{
+    display: flex;
+    justify-content:space-around;
+    margin: 30px;
+    padding: 10px;
+    font-size: 2vw;
+}
+
+.unit{
+    font-size: 2vw;
+}
 #left-led-name, #left-led-data, #left-fan-name, #left-fan-data, #center-camera-name, #center-camera-data{
     border: 1px solid black;
 }
@@ -84,6 +94,10 @@ margin: 10px;
     height: 70%;
     border-radius: 30px;
 }
+
+#left-fan-data #section{
+    height: 85%;
+}
 #center-camera-data{
     height: 86%;
 }
@@ -95,4 +109,13 @@ margin: 10px;
 }
 
 #section{
+    display: flex;
+    justify-content:space-between;
+    padding: 15px 70px 20px 70px;
+    margin: 5px;
+    font-size: 1.5vw;
+}
+
+#fanicon{
+    width: 150px;
 }

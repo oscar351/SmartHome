@@ -3,6 +3,7 @@
   <head>
     <title>Hello</title>
     <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link rel='stylesheet' href='/stylesheets/toggle-switchy.css' />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   </head>
@@ -24,25 +25,28 @@
       </div>
       <div id="left-led-data">
         <div id="section">
-        <label class="switch">
           <p>거실</p>
-          <input type="checkbox" />
-          <span class="clider round"></span>
-        </label>
+          <label class="toggle-switchy" for="example_default_1" data-size="xl">
+            <input type="checkbox" id="example_default_1">
+            <span class="toggle">
+              <span class="switch"></span>
+            </span>
         </div>
         <div id="section">
-        <label class="switch">
           <p>화장실</p>
-          <input type="checkbox" />
-          <span class="clider round"></span>
-        </label>
+          <label class="toggle-switchy" for="example_default_2" data-size="xl">
+            <input type="checkbox" id="example_default_2">
+            <span class="toggle">
+              <span class="switch"></span>
+            </span>
         </div>
         <div id="section">
-        <label class="switch">
           <p>방 1</p>
-          <input type="checkbox" />
-          <span class="clider round"></span>
-        </label>
+          <label class="toggle-switchy" for="example_default_3" data-size="xl">
+            <input type="checkbox" id="example_default_3">
+            <span class="toggle">
+              <span class="switch"></span>
+            </span>
         </div>
       </div>
     </div>
@@ -51,10 +55,32 @@
           <p>환풍기</p>
         </div>
         <div id="left-fan-data">
-          <label class="switch">
-            환풍기 <input type="checkbox" />
-            <span class="clider round"></span>
-          </label>
+          <div id="section">
+            <input type="image" src="/stylesheets/image/fan_off.png" id="fanicon" disabled>
+            <label class="toggle-switchy" for="example_default_4" data-size="xl">
+              <input checked type="checkbox" id="example_default_4">
+              <span class="toggle">
+                <span class="switch"></span>
+              </span>
+            </label>
+            <script type="text/javascript">
+              $(document).ready(function(){
+                if($('#example_default_4').prop('checked') == false){
+                  $('#fanicon').attr('src','/stylesheets/image/fan_off.png');
+                }else{
+                  $('#fanicon').attr('src','/stylesheets/image/fan_on.png');
+                }
+              })
+
+              $('#example_default_4').change(function(){
+                if($('#example_default_4').prop('checked') == false){
+                  $('#fanicon').attr('src','/stylesheets/image/fan_off.png');
+                }else{
+                  $('#fanicon').attr('src','/stylesheets/image/fan_on.png');
+                }
+              });
+            </script>
+          </div>
         </div>
       </div>
     </div>
@@ -72,9 +98,9 @@
       <div id="right-house">
         <p id="right-name">집</p>
         <div id="right-house-data">
-          <p>온도</p><p>00℃</p>
-          <p>습도</p><p>00%</p>
-          <p>미세먼지</p><p>00</p>
+          <div class="rhd"><p>온도 : </p><p>00</p><p class="unit">℃</p></div>
+          <div class="rhd"><p>습도 : </p><p>00</p><p class="unit">%</p></div>
+          <div class="rhd"><p>미세먼지 : </p><p>00</p><p class="unit">㎍/㎥</p></div>
         </div>
       </div>
       <div id="right-out">
