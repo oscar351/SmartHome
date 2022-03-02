@@ -6,6 +6,7 @@
 <link rel='stylesheet' href='/stylesheets/regist.css' />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script type="text/javascript" src="/stylesheets/address.js"></script>
 
 </head>
 <body>
@@ -88,6 +89,12 @@
         <br>
         <label class="legend"><strong>생년월일</strong></label>
         <input type="date" name="birth" class="birth" required>
+        <label class="legend"><strong>주소</strong></label>
+        <div class="address">
+        <select name="h_area1" class="address1"></select>
+        <select name="h_area2" class="address1">
+        </select>
+        </div>
         <label class="legend"><strong>전화번호</strong></label>
         <div class="number">
         <input type="text" class="fnum" value="010" readonly>-

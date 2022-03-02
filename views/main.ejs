@@ -108,86 +108,64 @@
       <div id="right-out">
         <p id="right-name">외부</p>
         <div id="right-out-data">
-          <span class="js-weather"></span>
-          <img class="weatherIcon">
+          <img class="weathericon" src="">
+          <div class="weathercity"></div>
+          <div class="weathercity1"></div>
+          <div class="weathercity2"></div>
+          <div class="weathercity3"></div>
+          <div class="weathercity4"></div>
         </div>
       </div>
       <script type="text/javascript">
-        
-        const weather = document.querySelector(".js-weather");
-        const weatherIconImg = document.querySelector('.weatherIcon');
 
-// coord : 좌표
-const API_KEY = "37f61a5b1124dd4e1907e2c6c53f8298";
-const COORDS = "coords";
-
-// function saveCoords(coordsObj){
-//     localStorage.setItem(COORDS, JSON.stringify(coordsObj));
-// };
-
-function getWeather(lat, lng){
-    fetch(
-        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`
-    ).then(function(response){
-        return response.json();
-    })
-    .then(function(json){
-        const temp = json.main.temp;
-        const place = json.name;
-        // 내가 더 추가해보기!
-        const skyCondition = json.weather[0].main;
-        const nation = json.sys.country;
-        weather.innerText = `${skyCondition} ${temp} @${place} in ${nation}`;
-        const weatherIcon = json.weather[0].icon;
-        const weatherIconAdrs = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-        weatherIconImg.setAttribute('src', weatherIconAdrs);
-    });
-}
-
-function handleGeoSuccess(position){
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    // key와 value 변수명이 같다면! 아래와 같이 표현 가능
-    const coordsObj = {
-        latitude,
-        longitude
-    };
-    // saveCoords(coordsObj);
-    getWeather(latitude, longitude);
-};
-
-function handleGeoError(){
-    console.log("Can not access geo location");
-};
-
-function askForCoords(){
-  const options = {
-        enableHighAccuracy: true, // 대략적인 값이라도 상관 없음: 기본값
-        
-        maximumAge: 0,
-
-        timeout: 15000    // 15초 이상 기다리지 않는다.
-    };
-
-    navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError, options);
-};
-
-function loadCoords(){
-  const loadedcoords = localStorage.getItem(COORDS);
-  if(loadedcoords === null){
-      askForCoords();
-    }else{
-        //getWeather
-        const parseCoords = JSON.parse(loadedcoords);
-        getWeather(parseCoords.latitude, parseCoords.longitude);
-    }
-};
-
-function init(){
-    loadCoords();
-};
-
-init();
+        $(document).ready(function(){
+          $.ajax({
+                    url : "weather",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                        $('.weathercity').html(data.ondo);
+                        $('.weathercity1').html(data.nalsi);
+                        $('.weathercity2').html(data.humi);
+                        $('.weathercity3').html(data.wind);
+                        $('.weathercity4').html(data.munji);
+                        if(data.nalsi == '맑음'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg')
+                        }else if(data.nalsi == '흐림'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg')
+                        }else if(data.nalsi == '구름조금'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt3.svg')
+                        }else if(data.nalsi == '구름많음'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg')
+                        }else if(data.nalsi == '약한비'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg')
+                        }else if(data.nalsi == '비'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt9.svg')
+                        }else if(data.nalsi == '강한비'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt10.svg')
+                        }else if(data.nalsi == '약한눈'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt11.svg')
+                        }else if(data.nalsi == '눈'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt12.svg')
+                        }else if(data.nalsi == '강한눈'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg')
+                        }else if(data.nalsi == '흐린 후 갬'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt25.svg')
+                        }else if(data.nalsi == '비 후 갬'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt27.svg')
+                        }else if(data.nalsi == '눈 후 갬'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt28.svg')
+                        }else if(data.nalsi == '흐려져 비'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt29.svg')
+                        }else if(data.nalsi == '흐려져 눈'){
+                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt30.svg')
+                        }
+                    },
+                    error : function(){
+                        alert("서버요청실패");
+                    }
+                });
+        });
       </script>
     </div>
   </div>

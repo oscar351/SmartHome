@@ -7,7 +7,10 @@ const fs = require('fs');
 var crypto = require("crypto");
 var FileStore = require('session-file-store')(session);
 const http = require('http');
-
+const axios = require('axios');
+const cheerio = require('cheerio');
+const iconv = require('iconv-lite');
+const log = console.log;
 
 var client = mysql.createConnection({
   host : 'localhost',
@@ -23,7 +26,8 @@ router.get('/', function(req, res, next) {
   if(req.session.is_logined == true){
     res.render('main',{
       is_logined : req.session.is_logined,
-      name : req.session.name
+      name : req.session.name,
+      address : req.session.address
     });
   }else{
     res.render('login', { is_logined: false });
@@ -46,11 +50,13 @@ router.post('/', function(req,res,next){
           req.session.name = data[0].name;
           req.session.id = data[0].id;
           req.session.password = data[0].password;
+          req.session.address = data[0].address;
           req.session.save(function(){ // 세션 스토어에 적용하는 작업
               res.render('main',{ // 정보전달
                   name : data[0].name,
                   id : data[0].id,
-                  is_logined : true
+                  is_logined : true,
+                  address : data[0].address
               });
         });
         });
@@ -125,12 +131,13 @@ router.post('/regist', function(req, res, next) {
   const name = body.name;
   const birth = body.birth;
   const number = body.pnumber;
+  const address = body.h_area2;
   const email = body.email + '@' + body.email2;
 
   client.query('select * from login where id=?',[id],(err,data) =>{
     if(data.length == 0){
       console.log('회원가입 성공');
-      client.query('insert into login values(?,?,?,?,?,?)',[id,password, name,birth, number,email]);
+      client.query('insert into login values(?,?,?,?,?,?,?)',[id,password, name,birth, number,address,email]);
       res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
       res.write('<script>alert("회원가입이 완료되었습니다!")</script>');
       res.write('<script>window.location="../"</script>');
@@ -158,6 +165,45 @@ router.post('/checkid', (req,res)=>{
     res.json(result);
   });
 });
+
+router.post('/weather', (req,res)=>{
+  var address = req.session.address;
+  const getHtml = async () => {
+    try {
+      return await axios.get(`https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=${encodeURIComponent(address+"날씨")}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getHtml()
+    .then(html => {
+      let ulList = [];
+      const $ = cheerio.load(html.data);
+      const weatherdata = $('#main_pack > section.sc_new.cs_weather_new._cs_weather > div._tab_flicking > div.content_wrap > div.open > div:nth-child(1) > div').children('div.weather_info');
+
+      weatherdata.each(function(i, elem) {
+        ulList[i] = {
+          title: $(this).find('div > div.weather_graphic > div.temperature_text').text(),
+          nalsi: $(this).find('div > div.temperature_info > p > span.weather.before_slash').text(),
+          humi: $(this).find('div > div.temperature_info > dl > dd:nth-child(4)').text(),
+          wind: $(this).find('div > div.temperature_info > dl > dd:nth-child(6)').text(),
+          munji: $(this).find('div > div.report_card_wrap').text(),
+      };
+      });
+      const data = {
+        ondo: ulList[0].title,
+        nalsi: ulList[0].nalsi,
+        humi : ulList[0].humi,
+        wind : ulList[0].wind,
+        munji : ulList[0].munji,
+      };
+      res.json(data);
+      return data;
+    })
+    .then((res) => log(res));
+});
+
 
 router.get('/logout',(req,res)=>{
   console.log('로그아웃 성공');

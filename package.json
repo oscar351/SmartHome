@@ -6,8 +6,10 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
+    "cheerio": "^1.0.0-rc.10",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -17,6 +19,7 @@
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "fs": "^0.0.1-security",
+    "geoip-lite": "^1.4.3",
     "http": "^0.0.1-security",
     "http-errors": "~1.6.3",
     "iconv-lite": "^0.6.3",
