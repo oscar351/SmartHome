@@ -197,6 +197,7 @@ router.post('/weather', (req,res)=>{
         humi : ulList[0].humi,
         wind : ulList[0].wind,
         munji : ulList[0].munji,
+        address1 : req.session.address
       };
       res.json(data);
       return data;
