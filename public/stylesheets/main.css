@@ -13,6 +13,10 @@
     font-size: large;
 }
 
+.logo{
+    width: 300px;
+    margin: 0 auto;
+  }
 
 #logout{
     position: absolute;
@@ -123,4 +127,10 @@ margin: 10px;
 
 #right-out-data{
     background-color: aqua;
+}
+
+.weathercity5{
+    text-align: right;
+    font-size: 18px;
+    margin: 10px;
 }
