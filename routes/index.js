@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req,res,next){
   const body = req.body;
   const user_id = body.user_id;
-  const user_password = body.user_password;
+  const user_password = crypto.createHash('sha512').update(body.user_password).digest('base64');
 
   client.query('select count(*) cnt from login where id=? and password=?',[user_id, user_password],(err,data)=>{
     // 로그인 확인
@@ -96,25 +96,35 @@ router.post('/findid', function(req, res, next) {
   });
 });
 
-router.post('/findpw', function(req, res, next) {
-  const body = req.body;
-  const id = body.findID;
-  const name = body.findname;
+router.post('/findpw', (req,res)=>{
+  var userid = req.body.userID;
+  var username = req.body.userNAME;
+  var result = 0;
 
-  client.query('select * from login where id=? and name=?',[id, name],(err,data) =>{
+  client.query('select * from login where id=? and name=?', [userid, username],(err,data)=>{
     if(data.length == 0){
-      console.log('데이터 없음');
-      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-      res.write('<script>alert("일치하는 정보가 없습니다.")</script>');
-      res.write('<script>window.location="../findUser"</script>');
-      res.end();
+      result = 0;
     }else{
-	console.log('데이터 검색 완료!');
+      result = 1;
+    }
+    res.json(result);
+  });
+});
+
+router.post('/new_password', function(req, res, next) {
+  const body = req.body;
+  var userid = body.findID;
+  var password1 = crypto.createHash('sha512').update(body.new_password1).digest('base64');
+
+  client.query('UPDATE login SET password=? WHERE id=?',[password1, userid],(err,data) =>{
+    if(err){
+      console.log(err);
+    } else {
       res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-      res.write('<script>alert("회원님의 비밀번호 : ' + data[0].password + '")</script>');
-      res.write('<script>window.location="../findUser"</script>');
+      res.write('<script>alert("새로운 비밀번호 저장이 완료되었습니다!")</script>');
+      res.write('<script>window.location="../"</script>');
       res.end();
-	}
+    }
   });
 });
 
@@ -133,11 +143,12 @@ router.post('/regist', function(req, res, next) {
   const number = body.pnumber;
   const address = body.h_area2;
   const email = body.email + '@' + body.email2;
+  const kpassword = crypto.createHash('sha512').update(password).digest('base64');
 
   client.query('select * from login where id=?',[id],(err,data) =>{
     if(data.length == 0){
       console.log('회원가입 성공');
-      client.query('insert into login values(?,?,?,?,?,?,?)',[id,password, name,birth, number,address,email]);
+      client.query('insert into login values(?,?,?,?,?,?,?)',[id,kpassword, name,birth, number,address,email]);
       res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
       res.write('<script>alert("회원가입이 완료되었습니다!")</script>');
       res.write('<script>window.location="../"</script>');

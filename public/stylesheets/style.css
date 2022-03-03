@@ -28,8 +28,8 @@ h1{
   font-size: 50px;
 }
 body {
-  height: 100%;
-  padding: 100px;
+  height: 90%;
+  padding: 90px;
   margin: 40px 0 0 0;
   font-size: 14px;
   font-family: 'Jua';
@@ -55,7 +55,7 @@ input[type=text],input[type=password], .btLogin{
   box-sizing:border-box;
 }
 button{
-  font-size: 14px;
+  font-size: 16px;
   height: 45px;
   background-color: #02ceb3;
   border-color: #02ceb3;

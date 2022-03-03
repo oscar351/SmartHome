@@ -2,10 +2,11 @@
 
 #join-form{
     width:600px;
-    margin:90px auto;
-    padding:50px;
+    margin:20px auto;
+    padding:0px 50px 0px 50px;
     border: 1px solid black;
-    font-family: '맑은고딕', '돋움';
+    font-family: 'Jua';
+    letter-spacing: 4px;
     text-align: center;
 }
 h1{
@@ -15,6 +16,7 @@ label.legend, legend strong{
     display: block;
     margin-top:10px;
     text-align: left;
+    font-size: 18px;
 }
 
 label.legend{
@@ -68,9 +70,9 @@ padding-bottom: 10px;}
     height: 40px;
     margin-top: 30px;
     margin-bottom: 30px;
-    background-color: #000000;
-    border: 1px solid #000000;
-    color: white;
+    background-color: #02ceb3;
+    border: 1px solid #02ceb3;
+    color: black;
     font-weight: bold;
     font-size: 20px;
 }
@@ -88,11 +90,7 @@ padding-bottom: 10px;}
 #userid_msg2{
     color: green;
 }
-input[type=radio]{
-    margin: 3px 3px 3px 30px;
-    width:20px;
-    height: 20px;
-}
+
 .number{
     width: 50%;
     border: 2px solid black;
@@ -119,6 +117,7 @@ input[type=radio]{
     margin:2px 0 0 0;
     border: none;
     float: left;
+    font-family: 'Jua';
 }
 p.email{
     width: 10px;
@@ -150,3 +149,8 @@ p.email{
     width:30px;
     border: none;
 }
+
+.logo{
+    width: 300px;
+    margin: 0 auto;
+  }

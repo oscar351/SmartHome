@@ -55,3 +55,15 @@ div{
     font-weight: bold;
     font-size: 20px;
 }
+
+p{
+    text-align: left;
+    margin-left: 100px;
+    font-size: 14px;
+}
+#checkedpw{
+    color: green;
+}
+#notcheckpw{
+    color: red;
+}
