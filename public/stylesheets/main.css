@@ -1,9 +1,12 @@
 *   {
     margin: 0;
     padding: 0;
-    font-family: '맑은고딕', '돋움';
+    font-family: 'Jua';
 }
 
+body{
+    background-color: #c5dfe5;
+}
 #top-logo{
     width: 100%;
     height: 100px;
@@ -60,6 +63,7 @@ margin: 10px;
 #right-house-data, #right-out-data{
     border: 1px solid black;
     height: 92%;
+    background-color: white;
 }
 
 .rhd{
@@ -75,6 +79,7 @@ margin: 10px;
 }
 #left-led-name, #left-led-data, #left-fan-name, #left-fan-data, #center-camera-name, #center-camera-data{
     border: 1px solid black;
+    background-color: white;
 }
 
 #left-led-name, #left-fan-name{
@@ -125,12 +130,56 @@ margin: 10px;
     width: 150px;
 }
 
-#right-out-data{
-    background-color: aqua;
-}
+/* #right-out-data{
+    background-color: #ffffff;
+} */
 
 .weathercity5{
     text-align: right;
     font-size: 18px;
     margin: 10px;
+}
+.weathercity{
+    font-size: 3.5vw;
+}
+.weathercity4{
+    margin: 10px;
+}
+
+.weather_chart1{
+    list-style-type: none;
+}
+
+.weahter_text{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.2vw;
+}
+
+.weahter_text span{
+    font-family: '맑은고딕';
+}
+.weather_chart2{
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+.weather_box{
+    margin: 22px;
+    text-align: center;
+}
+li strong, li span{
+    display: block;
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 18px;
+}
+
+.rise{
+    color: #fd9b5a;
+}
+
+.icon_unit{
+    display: flex;
+    justify-content:center;
 }

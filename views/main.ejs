@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet' href='/stylesheets/main.css' />
     <link rel='stylesheet' href='/stylesheets/toggle-switchy.css' />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   </head>
@@ -111,12 +112,52 @@
         <p id="right-name">외부</p>
         <div id="right-out-data">
           <div class="weathercity5"></div>
+          <div class="icon_unit">
           <img class="weathericon" src="">
           <div class="weathercity"></div>
-          <div class="weathercity1"></div>
-          <div class="weathercity2"></div>
-          <div class="weathercity3"></div>
-          <div class="weathercity4"></div>
+          </div>
+          <div class="weahter_text">
+          <div class="weatherc_class1">
+            <strong>날씨 :</strong>
+          <span class="weathercity1"></span>
+          </div>
+          <div class="weather_class1">
+          <strong>습도 :</strong>
+          <span class="weathercity2"></span>
+          </div>
+          <div class="weather_class1">
+            <strong>바람 :</strong>
+          <span class="weathercity3"></span>
+          </div>
+          </div>
+          <div class="weathercity4">
+            <ul class="weather_chart1">
+              <li class="weather_chart2">
+                <div class="weather_box">
+                <strong class="weather_chart_mise"></strong>
+                <span class="mise"></span>
+                </div>
+              </li>
+              <li  class="weather_chart2">
+                <div class="weather_box">
+                <strong class="weather_chart_chomi"></strong>
+                <span class="chomi"></span>
+                </div>
+              </li>
+              <li  class="weather_chart2">
+                <div class="weather_box">
+                <strong class="weather_chart_sun"></strong>
+                <span class="sun"></span>
+                </div>
+              </li>
+              <li  class="weather_chart2">
+                <div class="weather_box">
+                <strong class="weather_chart_rise"></strong>
+                <span class="rise"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <script type="text/javascript">
@@ -127,12 +168,52 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
+                        const arr = (data.munji).split(" ");
+                        const Ondo = (data.ondo).split("도");
                         $('.weathercity5').html(data.address1);
-                        $('.weathercity').html(data.ondo);
+                        $('.weathercity').html(Ondo[1]);
                         $('.weathercity1').html(data.nalsi);
                         $('.weathercity2').html(data.humi);
                         $('.weathercity3').html(data.wind);
-                        $('.weathercity4').html(data.munji);
+                        $('.weather_chart_mise').html(arr[4]);
+                        $('.mise').html(arr[5]);
+                        $('.weather_chart_chomi').html(arr[10]);
+                        $('.chomi').html(arr[11]);
+                        $('.weather_chart_sun').html(arr[16]);
+                        $('.sun').html(arr[17]);
+                        $('.weather_chart_rise').html(arr[22]);
+                        $('.rise').html(arr[23]);
+
+                        if(arr[5] == '좋음'){
+                          $('.mise').css('color', '#00c73c');
+                        }else if(arr[5] == '보통'){
+                          $('.mise').css('color', '#32a1ff');
+                        }else if(arr[5] == '나쁨'){
+                          $('.mise').css('color', '#fd9b5a');
+                        }else if(arr[5] == '매우나쁨'){
+                          $('.mise').css('color', '#fd5959');
+                        }
+
+                        if(arr[11] == '좋음'){
+                          $('.chomi').css('color', '#00c73c');
+                        }else if(arr[11] == '보통'){
+                          $('.chomi').css('color', '#32a1ff');
+                        }else if(arr[11] == '나쁨'){
+                          $('.chomi').css('color', '#fd9b5a');
+                        }else if(arr[11] == '매우나쁨'){
+                          $('.chomi').css('color', '#fd5959');
+                        }
+
+                        if(arr[17] == '좋음'){
+                          $('.sun').css('color', '#00c73c');
+                        }else if(arr[17] == '보통'){
+                          $('.sun').css('color', '#32a1ff');
+                        }else if(arr[17] == '나쁨'){
+                          $('.sun').css('color', '#fd9b5a');
+                        }else if(arr[17] == '매우나쁨'){
+                          $('.sun').css('color', '#fd5959');
+                        }
+
                         if(data.nalsi == '맑음'){
                           $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg')
                         }else if(data.nalsi == '흐림'){
