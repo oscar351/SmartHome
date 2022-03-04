@@ -225,4 +225,26 @@ router.get('/logout',(req,res)=>{
   });
 });
 
+router.post('/room1_on', (req,res)=>{
+  var options = {
+    host: 'http://192.168.0.201',
+    port: 8888,
+    path: 'led1/on'
+};
+var req = http.get(options, function(res){
+    var resData = '';
+    res.on('data', function(chunk){
+        resData += chunk;
+    });
+    
+    res.on('end', function(){
+        console.log(resData);
+    });
+});
+req.on('error', function(err){
+    console.log('오류 발생: ' + err.message);
+});
+
+});
+
 module.exports = router;
