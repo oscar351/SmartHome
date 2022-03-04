@@ -4,9 +4,12 @@
     width:600px;
     margin:80px auto;
     padding:50px;
-    border: 1px solid black;
-    font-family: '맑은고딕', '돋움';
+    font-family: 'Jua';
     text-align: center;
+}
+
+body{
+    background-color: #c5dfe5;
 }
 
 .logo{
@@ -21,9 +24,14 @@ label.legend, legend strong{
     margin-top:10px;
     text-align: left;
 }
-
+.idbox, #find_password{
+    border: 4px solid #00ac95;
+    border-radius: 10px;
+}
 label.legend{
     margin-left: 100px;
+    font-size: 1vw;
+    letter-spacing: 5px;
 }
 fieldset{border: none;
 padding-bottom: 10px;}

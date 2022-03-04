@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>아이디 / 비밀번호 찾기</title>
 <link rel='stylesheet' href='/stylesheets/findUser.css' />
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
@@ -14,7 +15,7 @@
       </form>
         <form action="/findid" method="post">
           <label class="legend"><strong>아이디 찾기</strong></label>
-          <div>
+          <div class="idbox">
           <label class="legend"><strong>이메일</strong></label>
           <input type="text" class="text" id="id" name="findemail" maxlength="20" required>
           <input name="go" type="submit" id="findID" class="go" value="검색">

@@ -37,6 +37,35 @@
               <span class="switch"></span>
             </span>
         </div>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('#example_default_1').change(function(){
+            if($('#example_default_1').prop('checked') == false){
+              $.ajax({
+                    url : "",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(){
+                    },
+                    error : function(){
+                      
+                    }
+                  });
+            }else{
+              $.ajax({
+                    url : "",
+                    type : "post",
+                    dataType : 'json',  
+                    success : function(){
+                    },
+                    error : function(){
+                      
+                    }
+                  });
+            }
+          });
+        });
+        </script>
         <div id="section">
           <p>화장실</p>
           <label class="toggle-switchy" for="example_default_2" data-size="xl">
@@ -92,10 +121,10 @@
     <div id="center-btn">
       <div id="center-camera">
       <div id="center-camera-name">
-        <p>보안</p>
+        <p>CCTV</p>
       </div>
       <div id="center-camera-data">
-        <p>카메라 들어갈 곳</p>
+        <img style="-webkit-user-select: none;background-color: #404040;" src="http://192.168.0.201:8091/?action=stream" width="712" height="626" onError="this.src='/stylesheets/image/nocamera.png'">
       </div>
       </div>
     </div>
@@ -163,6 +192,7 @@
       <script type="text/javascript">
 
         $(document).ready(function(){
+          // setInterval(function(){
           $.ajax({
                     url : "weather",
                     type : "post",
@@ -247,9 +277,10 @@
                         }
                     },
                     error : function(){
-                        alert("서버요청실패");
+                      $('.weathercity').html("서버에서 데이터를 불러오지 못하였습니다.");
                     }
                 });
+              // }, 60000);
         });
       </script>
     </div>
