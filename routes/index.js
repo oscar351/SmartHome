@@ -277,11 +277,17 @@ router.post('/room3_off', (req,res)=>{
 
 router.post('/humid', (req,res)=>{
   request('http://112.221.103.174:8888/Humid', function (error, response, body) {
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  const arr = (body).split(" ");
-  console.log(arr[0]); // Print the data received
-  console.log(arr[1]); // Print the data received
-  res.send(arr); //Display the response on the website
+    if(body == null){
+      console.log('접속 실패')
+      result = 0;
+      res.send(result);
+    }else{
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    const arr = (body).split(" ");
+    console.log(arr[0]); // Print the data received
+    console.log(arr[1]); // Print the data received
+    res.send(arr); //Display the response on the website
+}
 });      
 });
 module.exports = router;

@@ -196,6 +196,7 @@
           <div class="rhd"><p>온도 : </p><p id="temp1">00</p><p class="unit">℃</p></div>
           <div class="rhd"><p>습도 : </p><p id="humi1">00</p><p class="unit">%</p></div>
           <div class="rhd"><p>미세먼지 : </p><p>00</p><p class="unit">㎍/㎥</p></div>
+          <div><p id="errormsg"></p></div>
         </div>
       </div>
       <script type="text/javascript">
@@ -206,8 +207,12 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
-                      $('#temp1').html(data[0]);
-                      $('#humi1').html(data[1]);
+                      if(data == 0){
+                        $('#errormsg').html('* 센서 접속 실패');
+                      }else{
+                        $('#temp1').html(data[0]);
+                        $('#humi1').html(data[1]);
+                      }
                     },
                     error : function(){
                      console.log('data x')
