@@ -55,6 +55,96 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#example_default_1').on('click',function(){
+          if ( $(this).prop('checked') ) {
+            $.ajax({
+                    url : "room1_on",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                      console.log(data);
+                    },
+                    error : function(){
+                     console.log('data x')
+                    }
+            });
+
+          } else {
+            $.ajax({
+                    url : "room1_off",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                      console.log(data);
+                    },
+                    error : function(){
+                     console.log('data x')
+                    }
+            });
+          }
+        });
+
+        $('#example_default_2').on('click',function(){
+          if ( $(this).prop('checked') ) {
+            $.ajax({
+                    url : "room2_on",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                      console.log(data);
+                    },
+                    error : function(){
+                     console.log('data x')
+                    }
+            });
+
+          } else {
+            $.ajax({
+                    url : "room2_off",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                      console.log(data);
+                    },
+                    error : function(){
+                     console.log('data x')
+                    }
+            });
+          }
+        });
+
+        $('#example_default_3').on('click',function(){
+          if ( $(this).prop('checked') ) {
+            $.ajax({
+                    url : "room3_on",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                      console.log(data);
+                    },
+                    error : function(){
+                     console.log('data x')
+                    }
+            });
+
+          } else {
+            $.ajax({
+                    url : "room3_off",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                      console.log(data);
+                    },
+                    error : function(){
+                     console.log('data x')
+                    }
+            });
+          }
+        });
+      });
+    </script>
       <div id="left-fan">
         <div id="left-fan-name">
           <p>환풍기</p>
@@ -103,11 +193,29 @@
       <div id="right-house">
         <p id="right-name">집</p>
         <div id="right-house-data">
-          <div class="rhd"><p>온도 : </p><p>00</p><p class="unit">℃</p></div>
-          <div class="rhd"><p>습도 : </p><p>00</p><p class="unit">%</p></div>
+          <div class="rhd"><p>온도 : </p><p id="temp1">00</p><p class="unit">℃</p></div>
+          <div class="rhd"><p>습도 : </p><p id="humi1">00</p><p class="unit">%</p></div>
           <div class="rhd"><p>미세먼지 : </p><p>00</p><p class="unit">㎍/㎥</p></div>
         </div>
       </div>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          setInterval(function() {
+            $.ajax({
+                    url : "humid",
+                    type : "post",
+                    dataType : 'json',
+                    success : function(data){
+                      $('#temp1').html(data[0]);
+                      $('#humi1').html(data[1]);
+                    },
+                    error : function(){
+                     console.log('data x')
+                    }
+            });
+          }, 5000);
+        });
+      </script>
       <div id="right-out">
         <p id="right-name">외부</p>
         <div id="right-out-data">

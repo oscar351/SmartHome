@@ -2,11 +2,13 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var request = require('request');
 var session = require('express-session');
 const fs = require('fs');
 var crypto = require("crypto");
 var FileStore = require('session-file-store')(session);
-const http = require('http');
+var app = express();
+const http = require('http').Server(app);
 const axios = require('axios');
 const cheerio = require('cheerio');
 const iconv = require('iconv-lite');
@@ -226,25 +228,60 @@ router.get('/logout',(req,res)=>{
 });
 
 router.post('/room1_on', (req,res)=>{
-  var options = {
-    host: 'http://192.168.0.201',
-    port: 8888,
-    path: 'led1/on'
-};
-var req = http.get(options, function(res){
-    var resData = '';
-    res.on('data', function(chunk){
-        resData += chunk;
-    });
-    
-    res.on('end', function(){
-        console.log(resData);
-    });
-});
-req.on('error', function(err){
-    console.log('오류 발생: ' + err.message);
+    request('http://112.221.103.174:8888/led1/on', function (error, response, body) {
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the data received
+    res.send(body); //Display the response on the website
+  });      
 });
 
+router.post('/room1_off', (req,res)=>{
+  request('http://112.221.103.174:8888/led1/off', function (error, response, body) {
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the data received
+  res.send(body); //Display the response on the website
+  });      
 });
 
+router.post('/room2_on', (req,res)=>{
+  request('http://112.221.103.174:8888/led2/on', function (error, response, body) {
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the data received
+  res.send(body); //Display the response on the website
+});      
+});
+
+router.post('/room2_off', (req,res)=>{
+  request('http://112.221.103.174:8888/led2/off', function (error, response, body) {
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the data received
+  res.send(body); //Display the response on the website
+});      
+});
+
+router.post('/room3_on', (req,res)=>{
+  request('http://112.221.103.174:8888/led3/on', function (error, response, body) {
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the data received
+  res.send(body); //Display the response on the website
+});      
+});
+
+router.post('/room3_off', (req,res)=>{
+  request('http://112.221.103.174:8888/led3/off', function (error, response, body) {
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the data received
+  res.send(body); //Display the response on the website
+});      
+});
+
+router.post('/humid', (req,res)=>{
+  request('http://112.221.103.174:8888/Humid', function (error, response, body) {
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  const arr = (body).split(" ");
+  console.log(arr[0]); // Print the data received
+  console.log(arr[1]); // Print the data received
+  res.send(arr); //Display the response on the website
+});      
+});
 module.exports = router;
