@@ -237,8 +237,9 @@
       <div id="center-camera-name">
         <p>CCTV</p>
       </div>
+      <input type="submit" id="refresh" value="새로고침">
       <div id="center-camera-data">
-        <img style="-webkit-user-select: none;background-color: #404040;" src="http://112.221.103.174:8091/?action=stream" width="712" height="626" onError="this.src='/stylesheets/image/nocamera.png'">
+        <img style="-webkit-user-select: none;background-color: #404040;" src="http://112.221.103.174:8091/?action=stream" id="stream" width="712" height="626" onError="this.src='/stylesheets/image/nocamera.png'">
       </div>
       </div>
     </div>
@@ -253,6 +254,9 @@
         </div>
       </div>
       <script type="text/javascript">
+        $('#refresh').on('click',function(){
+          $('#stream').attr('src','http://112.221.103.174:8091/?action=stream')
+        });
         $(document).ready(function(){
           setInterval(function() {
             $.ajax({
