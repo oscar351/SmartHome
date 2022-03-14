@@ -53,6 +53,7 @@
               <span class="switch"></span>
             </span>
         </div>
+        <div><p id="errormsg1"></p></div>
       </div>
     </div>
     <script type="text/javascript">
@@ -64,10 +65,11 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
-                      console.log(data);
-                    },
-                    error : function(){
-                     console.log('data x')
+                      if(data == 0){
+                        $('#errormsg1').html('* 센서 접속 실패');
+                      }else{
+                        $('#errormsg1').html('');
+                      }
                     }
             });
 
@@ -77,10 +79,11 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
-                      console.log(data);
-                    },
-                    error : function(){
-                     console.log('data x')
+                      if(data == 0){
+                        $('#errormsg1').html('* 센서 접속 실패');
+                      }else{
+                        $('#errormsg1').html('');
+                      }
                     }
             });
           }
@@ -93,10 +96,11 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
-                      console.log(data);
-                    },
-                    error : function(){
-                     console.log('data x')
+                      if(data == 0){
+                        $('#errormsg1').html('* 센서 접속 실패');
+                      }else{
+                        $('#errormsg1').html('');
+                      }
                     }
             });
 
@@ -106,10 +110,11 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
-                      console.log(data);
-                    },
-                    error : function(){
-                     console.log('data x')
+                      if(data == 0){
+                        $('#errormsg1').html('* 센서 접속 실패');
+                      }else{
+                        $('#errormsg1').html('');
+                      }
                     }
             });
           }
@@ -122,10 +127,11 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
-                      console.log(data);
-                    },
-                    error : function(){
-                     console.log('data x')
+                      if(data == 0){
+                        $('#errormsg1').html('* 센서 접속 실패');
+                      }else{
+                        $('#errormsg1').html('');
+                      }
                     }
             });
 
@@ -135,10 +141,11 @@
                     type : "post",
                     dataType : 'json',
                     success : function(data){
-                      console.log(data);
-                    },
-                    error : function(){
-                     console.log('data x')
+                      if(data == 0){
+                        $('#errormsg1').html('* 센서 접속 실패');
+                      }else{
+                        $('#errormsg1').html('');
+                      }
                     }
             });
           }
@@ -210,12 +217,10 @@
                       if(data == 0){
                         $('#errormsg').html('* 센서 접속 실패');
                       }else{
+                        $('#errormsg').html('');
                         $('#temp1').html(data[0]);
                         $('#humi1').html(data[1]);
                       }
-                    },
-                    error : function(){
-                     console.log('data x')
                     }
             });
           }, 5000);

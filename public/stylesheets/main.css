@@ -184,3 +184,7 @@ li strong, li span{
     display: flex;
     justify-content:center;
 }
+
+#errormsg, #errormsg1{
+    color: red;
+}

@@ -229,65 +229,92 @@ router.get('/logout',(req,res)=>{
 
 router.post('/room1_on', (req,res)=>{
     request('http://112.221.103.174:8888/led1/on', function (error, response, body) {
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the data received
-    res.send(body); //Display the response on the website
+    // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    // console.log('body:', body); // Print the data received
+    if(body == undefined){
+      res.json(0);
+    }else{
+      res.json(body);
+    }
   });      
 });
 
 router.post('/room1_off', (req,res)=>{
   request('http://112.221.103.174:8888/led1/off', function (error, response, body) {
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the data received
-  res.send(body); //Display the response on the website
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  if(body == undefined){
+    res.json(0);
+  }else{
+    res.json(body);
+  }
   });      
 });
 
 router.post('/room2_on', (req,res)=>{
   request('http://112.221.103.174:8888/led2/on', function (error, response, body) {
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the data received
-  res.send(body); //Display the response on the website
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  if(body == undefined){
+    res.json(0);
+  }else{
+    res.json(body);
+  }
 });      
 });
 
 router.post('/room2_off', (req,res)=>{
   request('http://112.221.103.174:8888/led2/off', function (error, response, body) {
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the data received
-  res.send(body); //Display the response on the website
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  if(body == undefined){
+    res.json(0);
+  }else{
+    res.json(body);
+  }
 });      
 });
 
 router.post('/room3_on', (req,res)=>{
   request('http://112.221.103.174:8888/led3/on', function (error, response, body) {
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the data received
-  res.send(body); //Display the response on the website
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  if(body == undefined){
+    res.json(0);
+  }else{
+    res.json(body);
+  }
 });      
 });
 
 router.post('/room3_off', (req,res)=>{
   request('http://112.221.103.174:8888/led3/off', function (error, response, body) {
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the data received
-  res.send(body); //Display the response on the website
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  if(body == undefined){
+    res.json(0);
+  }else{
+    res.json(body);
+  }
 });      
 });
 
 router.post('/humid', (req,res)=>{
-  request('http://112.221.103.174:8888/Humid', function (error, response, body) {
-    if(body == null){
-      console.log('접속 실패')
-      result = 0;
-      res.send(result);
-    }else{
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    const arr = (body).split(" ");
-    console.log(arr[0]); // Print the data received
-    console.log(arr[1]); // Print the data received
-    res.send(arr); //Display the response on the website
-}
-});      
+  const result = 0;
+  try{
+    request('http://112.221.103.174:8888/Humid', function (error, response, body) {
+        if(body == undefined){
+          res.json(result);
+        }else{
+          const arr = (body).split(" ");
+          console.log(arr); // Print the data received
+          // res.send(arr); //Display the response on the website
+          res.json(arr);
+        }
+      });
+  } catch(err){
+    console.log('접속실패');
+    res.send(0);
+  }
 });
 module.exports = router;
