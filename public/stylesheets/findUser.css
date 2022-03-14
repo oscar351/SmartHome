@@ -24,7 +24,7 @@ label.legend, legend strong{
     margin-top:10px;
     text-align: left;
 }
-.idbox, #find_password{
+.idbox, #find_password, #new_password{
     border: 4px solid #00ac95;
     border-radius: 10px;
 }

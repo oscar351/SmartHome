@@ -56,148 +56,6 @@
         <div><p id="errormsg1"></p></div>
       </div>
     </div>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        setInterval(function() {
-          $.ajax({
-                  url : "led1_check",
-                  type : "post",
-                  dataType : 'json',
-                  success : function(data){
-                    if(data == 1){
-                      $('#example_default_1').prop("checked", true);
-                    }else{
-                      $('#example_default_1').prop("checked", false);
-                    }
-                  }
-          });
-        }, 2000);
-        setInterval(function() {
-          $.ajax({
-                  url : "led2_check",
-                  type : "post",
-                  dataType : 'json',
-                  success : function(data){
-                    if(data == 1){
-                      $('#example_default_2').prop('checked', true);
-                    }else{
-                      $('#example_default_2').prop("checked", false);
-                    }
-                  }
-          });
-        }, 1000);
-          setInterval(function() {
-          $.ajax({
-                  url : "led3_check",
-                  type : "post",
-                  dataType : 'json',
-                  success : function(data){
-                    if(data == 1){
-                      $('#example_default_3').prop('checked', true);
-                    }else{
-                      $('#example_default_3').prop("checked", false);
-                    }
-                  }
-          });
-        }, 1000);
-      });
-    </script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#example_default_1').on('click',function(){
-          if ( $(this).prop('checked') ) {
-            $.ajax({
-                    url : "room1_on",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                      if(data == 0){
-                        $('#errormsg1').html('* 센서 접속 실패');
-                      }else{
-                        $('#errormsg1').html('');
-                      }
-                    }
-            });
-
-          } else {
-            $.ajax({
-                    url : "room1_off",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                      if(data == 0){
-                        $('#errormsg1').html('* 센서 접속 실패');
-                      }else{
-                        $('#errormsg1').html('');
-                      }
-                    }
-            });
-          }
-        });
-
-        $('#example_default_2').on('click',function(){
-          if ( $(this).prop('checked') ) {
-            $.ajax({
-                    url : "room2_on",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                      if(data == 0){
-                        $('#errormsg1').html('* 센서 접속 실패');
-                      }else{
-                        $('#errormsg1').html('');
-                      }
-                    }
-            });
-
-          } else {
-            $.ajax({
-                    url : "room2_off",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                      if(data == 0){
-                        $('#errormsg1').html('* 센서 접속 실패');
-                      }else{
-                        $('#errormsg1').html('');
-                      }
-                    }
-            });
-          }
-        });
-
-        $('#example_default_3').on('click',function(){
-          if ( $(this).prop('checked') ) {
-            $.ajax({
-                    url : "room3_on",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                      if(data == 0){
-                        $('#errormsg1').html('* 센서 접속 실패');
-                      }else{
-                        $('#errormsg1').html('');
-                      }
-                    }
-            });
-
-          } else {
-            $.ajax({
-                    url : "room3_off",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                      if(data == 0){
-                        $('#errormsg1').html('* 센서 접속 실패');
-                      }else{
-                        $('#errormsg1').html('');
-                      }
-                    }
-            });
-          }
-        });
-      });
-    </script>
       <div id="left-fan">
         <div id="left-fan-name">
           <p>환풍기</p>
@@ -211,23 +69,6 @@
                 <span class="switch"></span>
               </span>
             </label>
-            <script type="text/javascript">
-              $(document).ready(function(){
-                if($('#example_default_4').prop('checked') == false){
-                  $('#fanicon').attr('src','/stylesheets/image/fan_off.png');
-                }else{
-                  $('#fanicon').attr('src','/stylesheets/image/fan_on.png');
-                }
-              })
-
-              $('#example_default_4').change(function(){
-                if($('#example_default_4').prop('checked') == false){
-                  $('#fanicon').attr('src','/stylesheets/image/fan_off.png');
-                }else{
-                  $('#fanicon').attr('src','/stylesheets/image/fan_on.png');
-                }
-              });
-            </script>
           </div>
         </div>
       </div>
@@ -236,8 +77,8 @@
       <div id="center-camera">
       <div id="center-camera-name">
         <p>CCTV</p>
+        <input type="submit" id="refresh" value="새로고침">
       </div>
-      <input type="submit" id="refresh" value="새로고침">
       <div id="center-camera-data">
         <img style="-webkit-user-select: none;background-color: #404040;" src="http://112.221.103.174:8091/?action=stream" id="stream" width="712" height="626" onError="this.src='/stylesheets/image/nocamera.png'">
       </div>
@@ -254,27 +95,6 @@
         </div>
       </div>
       <script type="text/javascript">
-        $('#refresh').on('click',function(){
-          $('#stream').attr('src','http://112.221.103.174:8091/?action=stream')
-        });
-        $(document).ready(function(){
-          setInterval(function() {
-            $.ajax({
-                    url : "humid",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                      if(data == 0){
-                        $('#errormsg').html('* 센서 접속 실패');
-                      }else{
-                        $('#errormsg').html('');
-                        $('#temp1').html(data[0]);
-                        $('#humi1').html(data[1]);
-                      }
-                    }
-            });
-          }, 5000);
-        });
       </script>
       <div id="right-out">
         <p id="right-name">외부</p>
@@ -328,101 +148,8 @@
           </div>
         </div>
       </div>
-      <script type="text/javascript">
-
-        $(document).ready(function(){
-          // setInterval(function(){
-          $.ajax({
-                    url : "weather",
-                    type : "post",
-                    dataType : 'json',
-                    success : function(data){
-                        const arr = (data.munji).split(" ");
-                        const Ondo = (data.ondo).split("도");
-                        $('.weathercity5').html(data.address1);
-                        $('.weathercity').html(Ondo[1]);
-                        $('.weathercity1').html(data.nalsi);
-                        $('.weathercity2').html(data.humi);
-                        $('.weathercity3').html(data.wind);
-                        $('.weather_chart_mise').html(arr[4]);
-                        $('.mise').html(arr[5]);
-                        $('.weather_chart_chomi').html(arr[10]);
-                        $('.chomi').html(arr[11]);
-                        $('.weather_chart_sun').html(arr[16]);
-                        $('.sun').html(arr[17]);
-                        $('.weather_chart_rise').html(arr[22]);
-                        $('.rise').html(arr[23]);
-
-                        if(arr[5] == '좋음'){
-                          $('.mise').css('color', '#32a1ff');
-                        }else if(arr[5] == '보통'){
-                          $('.mise').css('color', '#00c73c');
-                        }else if(arr[5] == '나쁨'){
-                          $('.mise').css('color', '#fd9b5a');
-                        }else if(arr[5] == '매우나쁨'){
-                          $('.mise').css('color', '#fd5959');
-                        }
-
-                        if(arr[11] == '좋음'){
-                          $('.chomi').css('color', '#32a1ff');
-                        }else if(arr[11] == '보통'){
-                          $('.chomi').css('color', '#00c73c');
-                        }else if(arr[11] == '나쁨'){
-                          $('.chomi').css('color', '#fd9b5a');
-                        }else if(arr[11] == '매우나쁨'){
-                          $('.chomi').css('color', '#fd5959');
-                        }
-
-                        if(arr[17] == '좋음'){
-                          $('.sun').css('color', '#32a1ff');
-                        }else if(arr[17] == '보통'){
-                          $('.sun').css('color', '#00c73c');
-                        }else if(arr[17] == '나쁨'){
-                          $('.sun').css('color', '#fd9b5a');
-                        }else if(arr[17] == '매우나쁨'){
-                          $('.sun').css('color', '#fd5959');
-                        }
-
-                        if(data.nalsi == '맑음'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt1.svg')
-                        }else if(data.nalsi == '흐림'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt7.svg')
-                        }else if(data.nalsi == '구름조금'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt3.svg')
-                        }else if(data.nalsi == '구름많음'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt5.svg')
-                        }else if(data.nalsi == '약한비'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt8.svg')
-                        }else if(data.nalsi == '비'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt9.svg')
-                        }else if(data.nalsi == '강한비'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt10.svg')
-                        }else if(data.nalsi == '약한눈'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt11.svg')
-                        }else if(data.nalsi == '눈'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt12.svg')
-                        }else if(data.nalsi == '강한눈'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt13.svg')
-                        }else if(data.nalsi == '흐린 후 갬'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt25.svg')
-                        }else if(data.nalsi == '비 후 갬'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt27.svg')
-                        }else if(data.nalsi == '눈 후 갬'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt28.svg')
-                        }else if(data.nalsi == '흐려져 비'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt29.svg')
-                        }else if(data.nalsi == '흐려져 눈'){
-                          $('.weathericon').attr('src', 'https://ssl.pstatic.net/sstatic/keypage/outside/scui/weather_new_new/img/weather_svg/icon_flat_wt30.svg')
-                        }
-                    },
-                    error : function(){
-                      $('.weathercity').html("서버에서 데이터를 불러오지 못하였습니다.");
-                    }
-                });
-              // }, 60000);
-        });
-      </script>
     </div>
   </div>
   </body>
+  <script type="text/javascript" src="/stylesheets/script/main.js"></script>
 </html>

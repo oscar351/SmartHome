@@ -190,9 +190,9 @@ li strong, li span{
 }
 
 #refresh{
-    position: absolute;
-    right: 630px;
-    top: 240px;
+    position:relative;
+    right: -325px;
+    top: -25px;
     width: 50px;
     height: 30px;
     border: 2px solid #00ac95;

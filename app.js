@@ -13,6 +13,7 @@ var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var raspi = require('./routes/raspi');
 const router = require('./routes/index');
 
 
@@ -37,6 +38,7 @@ app.use(session({
 }));
 
 app.use('/', indexRouter);
+app.use('/', raspi);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

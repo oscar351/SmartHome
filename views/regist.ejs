@@ -6,7 +6,6 @@
 <link rel='stylesheet' href='/stylesheets/regist.css' />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script type="text/javascript" src="/stylesheets/address.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -19,37 +18,6 @@
         <input type="text" class="text" id="id" name="id" maxlength="12" required><br>
         <p id="userid_msg1">* 중복된 아이디입니다.</p>
         <p id="userid_msg2">* 사용 가능한 아이디입니다.</p>
-        <script type="text/javascript">
-            $("#userid_msg1").hide();
-            $("#userid_msg2").hide();
-            const btn = document.querySelector('#checkid');
-            const userid = document.querySelector('#id');
-            $('#id').keyup(function(){
-                let userID = $('#id').val();
-                
-                $.ajax({
-                    url : "checkid",
-                    type : "post",
-                    data : {userID: userID},
-                    dataType : 'json',
-                    success : function(result){
-                        if(result == 0){
-                            $('#userid_msg1').show();
-                            $("#userid_msg2").hide();
-                            $("#go").attr("disabled", "disabled");
-                        }else{
-                            $('#userid_msg2').show();
-                            $("#userid_msg1").hide();
-                            $("#go").removeAttr("disabled");
-                        }
-                    },
-                    error : function(){
-                        alert("서버요청실패");
-                    }
-                });
-            });
-        
-        </script>
         <label class="legend"><strong>비밀번호</strong></label>
         <input type="password" id="password1" class="text" maxlength="12" name="password" required>
         <label class="legend"><strong>비밀번호 재확인</strong></label>
@@ -75,19 +43,6 @@
             <option value="99">직접 입력</option>
         </select>
         </div>
-        <script type="text/javascript">
-            $('#semail').change(function(){
-                $("#semail option:selected").each(function(){
-                    if($(this).val() == '99'){
-                        $("#emaddress").val('');
-                        $("#emaddress").attr("disabled", false);
-                    }else{
-                        $("#emaddress").val($(this).text());
-                        $("#emaddress").attr("disabled", false);
-                    }
-                });
-            });
-        </script>
         <br>
         <label class="legend"><strong>생년월일</strong></label>
         <input type="date" name="birth" class="birth" required>
@@ -103,26 +58,9 @@
         <input name="pnumber" type="text" class="pnum" minlength="2" maxlength="8" required placeholder="- 없이 입력">
         </div>
         <input name="go" type="submit" class="go" id="go" value="가입하기">
-        <script>
-            $("#checkedpw").hide();
-            $("#notcheckpw").hide();
-            $("#password2").keyup(function(){
-                var pwd1 = $("#password1").val();
-                var pwd2 = $("#password2").val();
-                if(pwd1 != "" || pwd2 != ""){
-                    if(pwd1 == pwd2) {
-                        $("#checkedpw").show();
-                        $("#notcheckpw").hide();
-                        $("#go").removeAttr("disabled");
-                    }else{
-                        $("#checkedpw").hide();
-                        $("#notcheckpw").show();
-                        $("#go").attr("disabled", "disabled");
-                    }
-                }
-            });
-        </script>
 	</form>
     </fieldset>
+    <script type="text/javascript" src="/stylesheets/script/address.js"></script>
+    <script type="text/javascript" src="/stylesheets/script/regist.js"></script>
 </body>
 </html>
