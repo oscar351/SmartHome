@@ -12,7 +12,7 @@ $(document).ready(function(){
                 }
             }
         });
-    }, 2000);
+    }, 4000);
 
     setInterval(function() {
         $.ajax({
@@ -27,7 +27,7 @@ $(document).ready(function(){
                 }
             }
         });
-    }, 2000);
+    }, 4000);
 
     setInterval(function() {
         $.ajax({
@@ -42,7 +42,7 @@ $(document).ready(function(){
                 }
             }
         });
-    }, 2000);
+    }, 4000);
 
     $('#example_default_1').on('click',function(){
         if ( $(this).prop('checked') ) {
