@@ -299,6 +299,30 @@ router.post('/room3_off', (req,res)=>{
 });      
 });
 
+router.post('/led1_check', (req,res)=>{
+  request('http://112.221.103.174:8888/led1/check', function (error, response, body) {
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  res.json(body);
+});      
+});
+
+router.post('/led2_check', (req,res)=>{
+  request('http://112.221.103.174:8888/led2/check', function (error, response, body) {
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  res.json(body);
+});      
+});
+
+router.post('/led3_check', (req,res)=>{
+  request('http://112.221.103.174:8888/led3/check', function (error, response, body) {
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  // console.log('body:', body); // Print the data received
+  res.json(body);
+});      
+});
+
 router.post('/humid', (req,res)=>{
   const result = 0;
   try{

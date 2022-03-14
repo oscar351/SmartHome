@@ -58,6 +58,52 @@
     </div>
     <script type="text/javascript">
       $(document).ready(function(){
+        setInterval(function() {
+          $.ajax({
+                  url : "led1_check",
+                  type : "post",
+                  dataType : 'json',
+                  success : function(data){
+                    if(data == 1){
+                      $('#example_default_1').prop("checked", true);
+                    }else{
+                      $('#example_default_1').prop("checked", false);
+                    }
+                  }
+          });
+        }, 2000);
+        setInterval(function() {
+          $.ajax({
+                  url : "led2_check",
+                  type : "post",
+                  dataType : 'json',
+                  success : function(data){
+                    if(data == 1){
+                      $('#example_default_2').prop('checked', true);
+                    }else{
+                      $('#example_default_2').prop("checked", false);
+                    }
+                  }
+          });
+        }, 1000);
+          setInterval(function() {
+          $.ajax({
+                  url : "led3_check",
+                  type : "post",
+                  dataType : 'json',
+                  success : function(data){
+                    if(data == 1){
+                      $('#example_default_3').prop('checked', true);
+                    }else{
+                      $('#example_default_3').prop("checked", false);
+                    }
+                  }
+          });
+        }, 1000);
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
         $('#example_default_1').on('click',function(){
           if ( $(this).prop('checked') ) {
             $.ajax({
