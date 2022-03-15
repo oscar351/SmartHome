@@ -203,4 +203,10 @@ li strong, li span{
     justify-content:center;
     position: relative;
     right: -150px;
+    top: -25px;
+}
+
+#errormsg{
+    position: relative;
+    top:-25px;
 }

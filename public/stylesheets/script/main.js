@@ -150,6 +150,8 @@ $(document).ready(function(){
             success : function(data){
                 if(data == 0){
                     $('#errormsg').html('* 센서 접속 실패');
+                    $('#temp1').html('00');
+                    $('#humi1').html('00');
                 }else{
                     $('#errormsg').html('');
                     $('#temp1').html(data[0]);
@@ -218,6 +220,7 @@ $(document).ready(function(){
 
     var typingtext = ($('.hide').text()).split("");
     var typingidx = 0;
+
     setInterval(function() {
         if(typingidx<typingtext.length){
             $('.gas_data_text').append(typingtext[typingidx]);
@@ -227,6 +230,15 @@ $(document).ready(function(){
             typingidx=0;
         }
     },200);
+
+    setInterval(function() {
+        if($('#errormsg').text() == '* 센서 접속 실패'){
+            $('.gas_data_text').hide();
+        }else{
+            $('.gas_data_text').show();
+        }
+    },1000);
+    
 });
 
 $('#example_default_4').change(function(){
