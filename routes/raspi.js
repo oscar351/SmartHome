@@ -123,9 +123,9 @@ router.post('/humid', (req,res)=>{
           res.json(result);
         }else{
           const arr = (body).split(" ");
-          console.log(arr); // Print the data received
           // res.send(arr); //Display the response on the website
           client.query('insert into data values(?,?,?)',[time, arr[0], arr[1]]);
+          console.log(time + ", " + arr); // Print the data received
           res.json(arr);
         }
       });
