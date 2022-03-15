@@ -197,3 +197,10 @@ li strong, li span{
     height: 30px;
     border: 2px solid #00ac95;
 }
+
+.gas_data{
+    display: flex;
+    justify-content:center;
+    position: relative;
+    right: -150px;
+}

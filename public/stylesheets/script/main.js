@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $('.hide').hide();
+
     setInterval(function() {
         $.ajax({
             url : "led1_check",
@@ -213,6 +215,18 @@ $(document).ready(function(){
           $('.weathercity').html("서버에서 데이터를 불러오지 못하였습니다.");
         }
     });
+
+    var typingtext = ($('.hide').text()).split("");
+    var typingidx = 0;
+    setInterval(function() {
+        if(typingidx<typingtext.length){
+            $('.gas_data_text').append(typingtext[typingidx]);
+            typingidx++;
+        }else{
+            $('.gas_data_text').html("");
+            typingidx=0;
+        }
+    },200);
 });
 
 $('#example_default_4').change(function(){
