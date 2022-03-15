@@ -7,6 +7,15 @@ const http = require('http').Server(app);
 const axios = require('axios');
 const cheerio = require('cheerio');
 const iconv = require('iconv-lite');
+const dateUtils = require('date-utils');
+var mysql = require('mysql');
+
+var client = mysql.createConnection({
+  host : 'localhost',
+  user : 'root',
+  password : 'dlrlals970425',
+  database : 'smarthome'
+});
 
 router.post('/room1_on', (req,res)=>{
     request('http://112.221.103.174:8888/led1/on', function (error, response, body) {
@@ -106,6 +115,8 @@ router.post('/led3_check', (req,res)=>{
 
 router.post('/humid', (req,res)=>{
   const result = 0;
+  var newDate = new Date();
+  var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
   try{
     request('http://112.221.103.174:8888/Humid', function (error, response, body) {
         if(body == undefined){
@@ -114,6 +125,7 @@ router.post('/humid', (req,res)=>{
           const arr = (body).split(" ");
           console.log(arr); // Print the data received
           // res.send(arr); //Display the response on the website
+          client.query('insert into data values(?,?,?)',[time, arr[0], arr[1]]);
           res.json(arr);
         }
       });
