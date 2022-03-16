@@ -119,7 +119,7 @@ router.post('/humid', (req,res)=>{
   var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
   try{
     request('http://112.221.103.174:8888/Humid', function (error, response, body) {
-        if(body == undefined){
+        if(body == undefined || body == null){
           res.json(result);
         }else{
           const arr = (body).split(" ");

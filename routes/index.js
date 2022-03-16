@@ -221,7 +221,7 @@ router.post('/weather', (req,res)=>{
 router.get('/getChartData', function(req, res) {
   client.query('select * from data',(err,data) =>{
     if(err){
-      throw err;
+      console.log('에러');
     }
     res.json(data);
   });
