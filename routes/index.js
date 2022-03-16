@@ -218,8 +218,9 @@ router.post('/weather', (req,res)=>{
     .then((res) => log(res));
 });
 
+// ORDER BY Time DESC LIMIT 1
 router.get('/getChartData', function(req, res) {
-  client.query('select * from data',(err,data) =>{
+  client.query('SELECT * FROM data',(err,data) =>{
     if(err){
       console.log('에러');
     }

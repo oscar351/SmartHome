@@ -242,10 +242,13 @@ $(document).ready(function(){
     var timeoutId;
     var Daydata = [],Tempdata = [], Humidata = [];
     var graph;
+
     getChart();
+
     function getChart(){
-    // if (typeof graph !== "undefined")  //업데이트전의 차트 상태가 보이지 않도록 이전에 생성된 차트 객체를 소멸시킨다
+    // if (typeof graph !== undefined){
     //    graph.destroy();
+    // }  //업데이트전의 차트 상태가 보이지 않도록 이전에 생성된 차트 객체를 소멸시킨다
     
     $.getJSON("/getChartData", function(data) {   // 비동기 GET 방식으로 차트에 사용할 데이터를 가져온다.
         //   data.sort(function(a, b) {    //JSON 리턴받은 데이터를 오름차순으로 정렬한다.
@@ -292,13 +295,13 @@ $(document).ready(function(){
             data: lineData,   //출력 데이터 지정
             options: lineOptions   //차트 옵션 지정
           });
-          timeoutId = setTimeout(function() {   //차트가 1분에 한번씩 업데이트 되도록 타임아웃을 설정한다.
-            getChart();
-          }, 60 * 1000);
+        //   timeoutId = setTimeout(function() {   //차트가 1분에 한번씩 업데이트 되도록 타임아웃을 설정한다.
+        //     getChart();
+        //   }, 30000);
           
         });
         
-        }
+    }
 });
 
 $('#example_default_4').change(function(){
