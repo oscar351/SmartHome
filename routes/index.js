@@ -218,6 +218,14 @@ router.post('/weather', (req,res)=>{
     .then((res) => log(res));
 });
 
+router.get('/getChartData', function(req, res) {
+  client.query('select * from data',(err,data) =>{
+    if(err){
+      throw err;
+    }
+    res.json(data);
+  });
+});
 
 router.get('/logout',(req,res)=>{
   console.log('로그아웃 성공');

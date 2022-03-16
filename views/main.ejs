@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
   </head>
   <body>
     <div id="top-logo">
@@ -86,7 +87,21 @@
     </div>
     <div id="right-btn">
       <div id="right-house">
+        <input class="open_modal" type="button" value="그래프 열기">
         <p id="right-name">집</p>
+        <div id="modal" class="modal-overlay">
+          <div class="modal-window">
+              <div class="title">
+                  <h2>온도 / 습도 통계 그래프</h2>
+              </div>
+              <div class="close-area">X</div>
+              <div class="content">
+                <div>
+                  <canvas id="lineChart" height="140"></canvas>
+                </div>
+              </div>
+          </div>
+      </div>
         <div id="right-house-data">
           <div class="rhd"><p>온도 : </p><p id="temp1">00</p><p class="unit">℃</p></div>
           <div class="rhd"><p>습도 : </p><p id="humi1">00</p><p class="unit">%</p></div>
@@ -96,8 +111,6 @@
           <p class="hide">가스 누출 감지 중..</p>
         </div>
       </div>
-      <script type="text/javascript">
-      </script>
       <div id="right-out">
         <p id="right-name">외부</p>
         <div id="right-out-data">

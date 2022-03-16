@@ -239,6 +239,66 @@ $(document).ready(function(){
         }
     },1000);
     
+    var timeoutId;
+    var Daydata = [],Tempdata = [], Humidata = [];
+    var graph;
+    getChart();
+    function getChart(){
+    // if (typeof graph !== "undefined")  //업데이트전의 차트 상태가 보이지 않도록 이전에 생성된 차트 객체를 소멸시킨다
+    //    graph.destroy();
+    
+    $.getJSON("/getChartData", function(data) {   // 비동기 GET 방식으로 차트에 사용할 데이터를 가져온다.
+        //   data.sort(function(a, b) {    //JSON 리턴받은 데이터를 오름차순으로 정렬한다.
+        //     return a["Time"] - b["Time"];
+        //   });
+          $.each(data, function(key, value) {  //JSON 각 데이터에 대해 원하는 컬럼값을 리스트에 저장한다.
+            Daydata.push(this.Time);
+            Tempdata.push(this.Temp);
+            Humidata.push(this.Humi);
+          });
+          var lineData = {  // 차트에 사용할 데이터와 데이터 옵션을 지정한다.  데이터는 리스트 형식으로 만들어야 한다.
+            labels: Daydata,
+            datasets: [
+              {
+                label: "Temp",   
+                backgroundColor: 'rgba(26,179,148,0.5)',   //차트의 라인(바)색 지정
+                borderColor: "rgba(26,179,148,0.7)",
+                pointBackgroundColor: "rgba(26,179,148,1)",  //데이터 점 컬러 지정
+                pointBorderColor: "#fff",
+                data: Tempdata  //차트 데이터 지정
+              },
+              {
+                label: "Humi",   
+                backgroundColor: 'rgba(194, 97, 32, 0.5)',   //차트의 라인(바)색 지정
+                borderColor: "rgba(194, 97, 32, 0.7)",
+                pointBackgroundColor: "rgba(194, 97, 32, 1)",  //데이터 점 컬러 지정
+                pointBorderColor: "#fff",
+                data: Humidata  //차트 데이터 지정
+              }
+            ]
+          };
+          var lineOptions = {   //차트 옵션을 정의한다.
+            responsive: true,    //브라우저의 크기에 따라 차트의 크기와 출력형태도 인터랙티브하게 반응하도록 지정한다.
+            maintainAspectRatio: false,  //차트의 출력 비율이 고정되도록 한다.
+            legend: {
+              display: true  //차트 범례 출력 지정
+            },
+            title : { display:true , text: '온도 / 습도 통계 그래프' }   //차트 제목 지정
+          };
+          var ctx = document.getElementById("lineChart").getContext("2d");  //차트를 뿌려질 태그를 객체로 생성한다.
+          ctx.canvas.height = 400;
+          graph = new Chart(ctx, {    //차트 객체를 생성한다.
+            type: 'line',  //차트 출력형식 지정
+            data: lineData,   //출력 데이터 지정
+            options: lineOptions   //차트 옵션 지정
+          });
+          timeoutId = setTimeout(function() {   //차트가 1분에 한번씩 업데이트 되도록 타임아웃을 설정한다.
+            getChart();
+          }, 60 * 1000);
+          
+        });
+        
+        }
 });
 
 $('#example_default_4').change(function(){
@@ -252,3 +312,26 @@ $('#example_default_4').change(function(){
 $('#refresh').on('click',function(){
     $('#stream').attr('src','http://112.221.103.174:8091/?action=stream')
 });
+
+const modal = document.getElementById("modal")
+
+$('.open_modal').on('click', function(){
+    $('#modal').css('display', 'flex');
+})
+
+$('.close-area').on('click', function(){
+    $('#modal').css('display', 'none');
+})
+
+modal.addEventListener("click", e => {
+    const evTarget = e.target
+    if(evTarget.classList.contains("modal-overlay")) {
+        modal.style.display = "none"
+    }
+})
+
+window.addEventListener("keyup", e => {
+    if(modal.style.display === "flex" && e.key === "Escape") {
+        modal.style.display = "none"
+    }
+})
