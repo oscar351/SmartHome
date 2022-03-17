@@ -15,7 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var raspi = require('./routes/raspi');
 const router = require('./routes/index');
-
+var retrofitRouter = require('./routes/retrofit'); // 레트로핏
 
 var app = express();
 
@@ -40,6 +40,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/', raspi);
 app.use('/users', usersRouter);
+app.use('/retrofit', retrofitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
