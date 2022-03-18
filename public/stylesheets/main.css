@@ -206,7 +206,7 @@ li strong, li span{
     display: flex;
     justify-content:center;
     position: relative;
-    right: -150px;
+    right: -100px;
     top: -25px;
 }
 

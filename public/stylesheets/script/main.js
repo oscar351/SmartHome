@@ -284,12 +284,12 @@ $(document).ready(function(){
                 responsive: true,    //브라우저의 크기에 따라 차트의 크기와 출력형태도 인터랙티브하게 반응하도록 지정한다.
                 maintainAspectRatio: false,  //차트의 출력 비율이 고정되도록 한다.
                 legend: {
-                  display: true  //차트 범례 출력 지정
+                  display: false  //차트 범례 출력 지정
                 },
                 title : { display:true , text: '온도 / 습도 통계 그래프' }   //차트 제목 지정
               };
               var ctx = document.getElementById("lineChart").getContext("2d");  //차트를 뿌려질 태그를 객체로 생성한다.
-              ctx.canvas.height = 400;
+              ctx.canvas.height = 520;
               graph = new Chart(ctx, {    //차트 객체를 생성한다.
                 type: 'line',  //차트 출력형식 지정
                 data: lineData,   //출력 데이터 지정
@@ -298,7 +298,7 @@ $(document).ready(function(){
               timeoutId = setTimeout(function() {   //차트가 1분에 한번씩 업데이트 되도록 타임아웃을 설정한다.
                 graph.destroy();
                 getChart();
-              }, 5000);
+              }, 10000);
               
             // });
         }

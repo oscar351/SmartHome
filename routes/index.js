@@ -142,7 +142,7 @@ router.post('/regist', function(req, res, next) {
   const password = body.password;
   const name = body.name;
   const birth = body.birth;
-  const number = body.pnumber;
+  const number = '010' + body.pnumber;
   const address = body.h_area2;
   const email = body.email + '@' + body.email2;
   const kpassword = crypto.createHash('sha512').update(password).digest('base64');
