@@ -114,25 +114,23 @@ router.post('/led3_check', (req,res)=>{
 });
 
 router.post('/humid', (req,res)=>{
-  const result = 0;
-  var newDate = new Date();
-  var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
-  try{
-    request('http://112.221.103.174:8888/Humid', function (error, response, body) {
-        if(body == undefined || body == null){
-          res.json(result);
-        }else{
-          const arr = (body).split(" ");
-          // res.send(arr); //Display the response on the website
-          client.query('insert into data values(?,?,?)',[time, arr[0], arr[1]]);
-          console.log(time + ", " + arr); // Print the data received
-          res.json(arr);
-        }
-      });
-  } catch(err){
-    console.log('접속실패');
-    res.send(0);
-  }
+  client.query("select * FROM data order by Time desc LIMIT 1", (err, data) =>{
+    if(err){
+      console.log('에러');
+    }
+    console.log(data[0]);
+    res.json(data[0]);
+  });
+});
+
+router.post('/graph_search', (req,res)=>{
+  client.query("select Time FROM data LIMIT 1", (err, data) =>{
+    if(err){
+      console.log('에러');
+    }
+    console.log(data[0].Time);
+    res.json(data[0].Time);
+  });
 });
 
 module.exports = router;

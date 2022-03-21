@@ -278,3 +278,7 @@ li strong, li span{
     text-shadow: 1px 1px 2px gray;
     color: rgb(0, 0, 0);
 }
+
+select{
+    width: 100px;
+}

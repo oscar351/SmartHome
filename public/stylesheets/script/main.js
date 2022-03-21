@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('.hide').hide();
 
     setInterval(function() {
@@ -142,6 +143,7 @@ $(document).ready(function(){
         $('#fanicon').attr('src','/stylesheets/image/fan_on.png');
     }
 
+    var count = 0;
     setInterval(function() {
         $.ajax({
             url : "humid",
@@ -154,8 +156,15 @@ $(document).ready(function(){
                     $('#humi1').html('00');
                 }else{
                     $('#errormsg').html('');
-                    $('#temp1').html(data[0]);
-                    $('#humi1').html(data[1]);
+                    if(count == 0 && parseInt(data.Humi) > 40){
+                        count = 1;
+                        alert('ㅈ댔다');
+                    }
+                    if(count == 1 && parseInt(data.Humi) < 40){
+                        count = 0;
+                    }
+                        $('#temp1').html(data.Temp);
+                        $('#humi1').html(data.Humi);
                 }
             }
         });
@@ -230,9 +239,13 @@ $(document).ready(function(){
             typingidx=0;
         }
     },200);
-
+    var alerttest = 0;
     setInterval(function() {
         if($('#errormsg').text() == '* 센서 접속 실패'){
+            // if(alerttest == 0){
+            //     alerttest = 1;
+            //     alert('test');
+            // }
             $('.gas_data_text').hide();
         }else{
             $('.gas_data_text').show();
@@ -255,7 +268,9 @@ $(document).ready(function(){
         dataType : 'json',
         success : function(data){
             $.each(data, function(key, value) {  //JSON 각 데이터에 대해 원하는 컬럼값을 리스트에 저장한다.
-                Daydata.push(this.Time);
+                const kst_time = new Date(this.Time);
+                const timeString_KR = kst_time.toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
+                Daydata.push(timeString_KR);
                 Tempdata.push(this.Temp);
                 Humidata.push(this.Humi);
               });

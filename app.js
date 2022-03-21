@@ -10,6 +10,16 @@ var crypto = require("crypto");
 var FileStore = require('session-file-store')(session);
 var dotenv = require('dotenv');
 var bodyParser = require('body-parser');
+var request = require('request');
+var mysql = require('mysql');
+
+var client = mysql.createConnection({
+  host : 'localhost',
+  user : 'root',
+  password : 'dlrlals970425',
+  database : 'smarthome'
+});
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -59,6 +69,20 @@ app.use(function(err, req, res, next) {
 });
 
 var server=app.listen(8888, function(){
+  setInterval(function() {
+    var newDate = new Date();
+    var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
+    request('http://112.221.103.174:8888/Humid', function (error, response, body) {
+        if(body == undefined || body == null){
+          console.log('에러')
+        }else{
+          const arr = (body).split(" ");
+          // res.send(arr); //Display the response on the website
+          client.query('insert into data values(?,?,?)',[time, arr[0], arr[1]]);
+          // console.log(time + ", " + arr); // Print the data received
+        }
+      });
+  }, 3000);
 	console.log('Express server listening on port ' + server.address().port);
 });
 
