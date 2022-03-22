@@ -51,6 +51,17 @@ margin: 10px;
     width: 800px;
 }
 
+.condition{
+    position: relative;
+    top: 25px;
+    left: 135px;
+    display: flex;
+    justify-content:center;
+}
+.condition p{
+    margin-left: 10px;
+}
+
 #left-led, #left-fan, #right-house, #right-out, #center-camera{
     padding: 10px;
     margin: 30px;
