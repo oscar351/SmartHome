@@ -94,21 +94,6 @@ var server=app.listen(8888, function(){
       }
     });
   }, 3000);
-
-  // setInterval(function() {
-  //   var newDate = new Date();
-  //   var time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
-  //   request('http://112.221.103.174:8888/dust', function (error, response, body) {
-  //       if(body == undefined || body == null){
-  //         console.log('에러')
-  //       }else{
-  //         const arr = (body).split(" ");
-  //         // res.send(arr); //Display the response on the website
-  //         // client.query('insert into data values(?,?,?)',[time, arr[0], arr[1]]);
-  //         console.log(time + ", " + arr); // Print the data received
-  //       }
-  //     });
-  // }, 3000);
 	console.log('Express server listening on port ' + server.address().port);
 });
 

@@ -141,4 +141,16 @@ router.post('/graph_search', (req,res)=>{
   });
 });
 
+router.post('/gas', (req,res)=>{
+  request('http://112.221.103.174:8888/gas', function (error, response, body) {
+  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the data received
+  if(body == undefined){
+    res.json(0);
+  }else{
+    res.json(body);
+  }
+});      
+});
+
 module.exports = router;

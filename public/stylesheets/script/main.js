@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
     $('.hide').hide();
@@ -143,7 +144,6 @@ $(document).ready(function(){
         $('#fanicon').attr('src','/stylesheets/image/fan_on.png');
     }
 
-    var count = 0;
     setInterval(function() {
         $.ajax({
             url : "humid",
@@ -156,15 +156,8 @@ $(document).ready(function(){
                     $('#humi1').html('00');
                 }else{
                     $('#errormsg').html('');
-                    // if(count == 0 && parseInt(data.Humi) > 40){
-                    //     count = 1;
-                    //     alert('ㅈ댔다');
-                    // }
-                    // if(count == 1 && parseInt(data.Humi) < 40){
-                    //     count = 0;
-                    // }
-                        $('#temp1').html(data.Temp);
-                        $('#humi1').html(data.Humi);
+                    $('#temp1').html(data.Temp);
+                    $('#humi1').html(data.Humi);
                 }
             }
         });
@@ -286,17 +279,25 @@ $(document).ready(function(){
             typingidx=0;
         }
     },200);
-    var alerttest = 0;
+    
+
+    var count = 0;
+
     setInterval(function() {
-        if($('#errormsg').text() == '* 센서 접속 실패'){
-            // if(alerttest == 0){
-            //     alerttest = 1;
-            //     alert('test');
-            // }
-            $('.gas_data_text').hide();
-        }else{
-            $('.gas_data_text').show();
-        }
+        $.ajax({
+            url : "gas",
+            type : "post",
+            dataType : 'json',
+            success : function(data){
+                if(data == 0){
+                    $('.gas_data_text').hide();
+                }
+
+                if (parseInt(data) > 300) {
+                    alert('가스 수치가 너무 높습니다!');
+                }
+            }
+        });
     },1000);
     
     var timeoutId;
