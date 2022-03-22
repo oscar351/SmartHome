@@ -179,16 +179,39 @@ $(document).ready(function(){
                     $('#dust1').html('00');
                     $('#dust2').html('00');
                 }else{
+                    const dust2 = ['#32a1ff', '#00c73c', '#fd9b5a', '#fd5959']
                     $('#errormsg').html('');
-                    // if(count == 0 && parseInt(data.Humi) > 40){
-                    //     count = 1;
-                    //     alert('ㅈ댔다');
-                    // }
-                    // if(count == 1 && parseInt(data.Humi) < 40){
-                    //     count = 0;
-                    // }
-                        $('#dust1').html(data.PM10);
-                        $('#dust2').html(data.PM25);
+                    $('#dust1').html(data.PM10);
+                    $('#dust2').html(data.PM25);
+
+                    if(0 <= parseInt(data.PM10) && parseInt(data.PM10) <= 30){
+                        $('#dust1').css('color', dust2[0])
+                        $('#unit').css('color', dust2[0])
+                    }else if(31 <= parseInt(data.PM10) && parseInt(data.PM10) <= 80){
+                        $('#dust1').css('color', dust2[1])
+                        $('#unit').css('color', dust2[1])
+                    }else if(81 <= parseInt(data.PM10) && parseInt(data.PM10) <= 150){
+                        $('#dust1').css('color', dust2[2])
+                        $('#unit').css('color', dust2[2])
+                    }else{
+                        $('#dust1').css('color', dust2[3])
+                        $('#unit').css('color', dust2[3])
+                    }
+
+                    if(0 <= parseInt(data.PM25) && parseInt(data.PM25) <= 30){
+                        $('#dust2').css('color', dust2[0])
+                        $('#unit1').css('color', dust2[0])
+                    }else if(31 <= parseInt(data.PM25) && parseInt(data.PM25) <= 80){
+                        $('#dust2').css('color', dust2[1])
+                        $('#unit1').css('color', dust2[1])
+                    }else if(81 <= parseInt(data.PM25) && parseInt(data.PM25) <= 150){
+                        $('#dust2').css('color', dust2[2])
+                        $('#unit1').css('color', dust2[2])
+                    }else{
+                        $('#dust2').css('color', dust2[3])
+                        $('#unit1').css('color', dust2[3])
+                    }
+
                 }
             }
         });
