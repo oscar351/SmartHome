@@ -224,6 +224,15 @@ router.post('/getChartData', function(req, res) {
     if(err){
       console.log('에러');
     }
+      res.json(data);
+  });
+});
+
+router.post('/getChartData1', function(req, res) {
+  client.query('SELECT * FROM data',(err,data) =>{
+    if(err){
+      console.log('에러');
+    }
     res.json(data);
   });
 });

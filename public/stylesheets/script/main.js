@@ -156,15 +156,39 @@ $(document).ready(function(){
                     $('#humi1').html('00');
                 }else{
                     $('#errormsg').html('');
-                    if(count == 0 && parseInt(data.Humi) > 40){
-                        count = 1;
-                        alert('ㅈ댔다');
-                    }
-                    if(count == 1 && parseInt(data.Humi) < 40){
-                        count = 0;
-                    }
+                    // if(count == 0 && parseInt(data.Humi) > 40){
+                    //     count = 1;
+                    //     alert('ㅈ댔다');
+                    // }
+                    // if(count == 1 && parseInt(data.Humi) < 40){
+                    //     count = 0;
+                    // }
                         $('#temp1').html(data.Temp);
                         $('#humi1').html(data.Humi);
+                }
+            }
+        });
+
+        $.ajax({
+            url : "dust",
+            type : "post",
+            dataType : 'json',
+            success : function(data){
+                if(data == 0){
+                    $('#errormsg').html('* 센서 접속 실패');
+                    $('#dust1').html('00');
+                    $('#dust2').html('00');
+                }else{
+                    $('#errormsg').html('');
+                    // if(count == 0 && parseInt(data.Humi) > 40){
+                    //     count = 1;
+                    //     alert('ㅈ댔다');
+                    // }
+                    // if(count == 1 && parseInt(data.Humi) < 40){
+                    //     count = 0;
+                    // }
+                        $('#dust1').html(data.PM10);
+                        $('#dust2').html(data.PM25);
                 }
             }
         });
@@ -320,6 +344,76 @@ $(document).ready(function(){
     });
         
     }
+
+    var timeoutId1;
+    var Daydata1 = [],Tempdata1 = [], Humidata1 = [];
+    var graph1;
+
+    // 전체
+    getChart1();
+
+    function getChart1(){
+    // if (typeof graph !== "undefined"){
+       
+    // }  //업데이트전의 차트 상태가 보이지 않도록 이전에 생성된 차트 객체를 소멸시킨다
+    $.ajax({
+        url : "getChartData1",
+        type : "post",
+        dataType : 'json',
+        success : function(data){
+            $.each(data, function(key, value) {  //JSON 각 데이터에 대해 원하는 컬럼값을 리스트에 저장한다.
+                const kst_time = new Date(this.Time);
+                const timeString_KR = kst_time.toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
+                Daydata1.push(timeString_KR);
+                Tempdata1.push(this.Temp);
+                Humidata1.push(this.Humi);
+              });
+              var lineData = {  // 차트에 사용할 데이터와 데이터 옵션을 지정한다.  데이터는 리스트 형식으로 만들어야 한다.
+                labels: Daydata1,
+                datasets: [
+                  {
+                    label: "Temp",   
+                    backgroundColor: 'rgba(26,179,148,0.5)',   //차트의 라인(바)색 지정
+                    borderColor: "rgba(26,179,148,0.7)",
+                    pointBackgroundColor: "rgba(26,179,148,1)",  //데이터 점 컬러 지정
+                    pointBorderColor: "#fff",
+                    data: Tempdata1  //차트 데이터 지정
+                  },
+                  {
+                    label: "Humi",   
+                    backgroundColor: 'rgba(194, 97, 32, 0.5)',   //차트의 라인(바)색 지정
+                    borderColor: "rgba(194, 97, 32, 0.7)",
+                    pointBackgroundColor: "rgba(194, 97, 32, 1)",  //데이터 점 컬러 지정
+                    pointBorderColor: "#fff",
+                    data: Humidata1  //차트 데이터 지정
+                  }
+                ]
+              };
+              var lineOptions = {   //차트 옵션을 정의한다.
+                responsive: true,    //브라우저의 크기에 따라 차트의 크기와 출력형태도 인터랙티브하게 반응하도록 지정한다.
+                maintainAspectRatio: false,  //차트의 출력 비율이 고정되도록 한다.
+                legend: {
+                  display: false  //차트 범례 출력 지정
+                },
+                title : { display:true , text: '온도 / 습도 통계 그래프' }   //차트 제목 지정
+              };
+              var ctx = document.getElementById("lineChart1").getContext("2d");  //차트를 뿌려질 태그를 객체로 생성한다.
+              ctx.canvas.height = 520;
+              graph1 = new Chart(ctx, {    //차트 객체를 생성한다.
+                type: 'line',  //차트 출력형식 지정
+                data: lineData,   //출력 데이터 지정
+                options: lineOptions   //차트 옵션 지정
+              });
+            //   timeoutId1 = setTimeout(function() {   //차트가 1분에 한번씩 업데이트 되도록 타임아웃을 설정한다.
+            //     graph.destroy();
+            //     getChart();
+            //   }, 10000);
+              
+            // });
+        }
+    });
+        
+    }
 });
 
 $('#example_default_4').change(function(){
@@ -357,6 +451,25 @@ window.addEventListener("keyup", e => {
     }
 })
 
-$('.graph_refresh').on('click', function(){
-    getChart();
+const modal1 = document.getElementById("modal1")
+
+$('.open_modal1').on('click', function(){
+    $('#modal1').css('display', 'flex');
+})
+
+$('.close-area1').on('click', function(){
+    $('#modal1').css('display', 'none');
+})
+
+modal1.addEventListener("click", e => {
+    const evTarget = e.target
+    if(evTarget.classList.contains("modal-overlay1")) {
+        modal1.style.display = "none"
+    }
+})
+
+window.addEventListener("keyup", e => {
+    if(modal1.style.display === "flex" && e.key === "Escape") {
+        modal1.style.display = "none"
+    }
 })

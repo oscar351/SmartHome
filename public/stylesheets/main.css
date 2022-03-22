@@ -70,7 +70,7 @@ margin: 10px;
 .rhd{
     display: flex;
     justify-content:space-around;
-    margin: 30px;
+    margin: 15px;
     padding: 0px 10px 10px 10px;
     font-size: 38px;
 }
@@ -207,23 +207,23 @@ li strong, li span{
     justify-content:center;
     position: relative;
     right: -100px;
-    top: -25px;
+    top: -15px;
 }
 
 #errormsg{
     position: relative;
-    top:-25px;
+    top:-10px;
 }
 
-.open_modal{
+.open_modal, .open_modal1{
     position: relative;
     top: 20px;
-    right: -185px;
+    right: -150px;
     border: 2px solid #00ac95;
 }
-.open_modal:hover {cursor:pointer;}
+.open_modal:hover, .open_modal1:hover {cursor:pointer;}
 
-#modal.modal-overlay {
+#modal.modal-overlay, #modal1.modal-overlay1 {
     width: 99.9%;
     height: 99.5%;
     position: absolute;
@@ -240,7 +240,7 @@ li strong, li span{
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
-#modal .modal-window {
+#modal .modal-window, #modal1 .modal-window1 {
     background: rgba(255, 255, 255);
     /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
     backdrop-filter: blur( 13.5px );
@@ -253,17 +253,17 @@ li strong, li span{
     top: 10px;
     padding: 10px;
 }
-#modal .title {
+#modal .title, #modal1 .title1 {
     padding-left: 10px;
     display: inline;
     text-shadow: 1px 1px 2px gray;
     color: rgb(0, 0, 0);
     
 }
-#modal .title h2 {
+#modal .title h2, #modal1 .title1 h2 {
     display: inline;
 }
-#modal .close-area {
+#modal .close-area, #modal1 .close-area1 {
     display: inline;
     float: right;
     padding-right: 10px;
@@ -272,7 +272,7 @@ li strong, li span{
     color: rgb(0, 0, 0);
 }
 
-#modal .content {
+#modal .content, #modal1 .content1 {
     margin-top: 20px;
     padding: 0px 10px;
     text-shadow: 1px 1px 2px gray;

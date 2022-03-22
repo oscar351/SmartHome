@@ -118,7 +118,15 @@ router.post('/humid', (req,res)=>{
     if(err){
       console.log('에러');
     }
-    console.log(data[0]);
+    res.json(data[0]);
+  });
+});
+
+router.post('/dust', (req,res)=>{
+  client.query("select * FROM dust order by Time desc LIMIT 1", (err, data) =>{
+    if(err){
+      console.log('에러');
+    }
     res.json(data[0]);
   });
 });
