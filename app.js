@@ -140,7 +140,7 @@ const gas_timer = setInterval(() => {
     gas_count = 0;
     }
   })
-}, 3000) // 3초마다 반복
+}, 10000) // 3초마다 반복
 
 
 var temp_count = 4;
@@ -164,7 +164,7 @@ const temp_timer = setInterval(() => {
     }
   }
   })
-}, 3000) // 3초마다 반복
+}, 10000) // 3초마다 반복
 
 var server=app.listen(8888, function(){
   setInterval(function() {
