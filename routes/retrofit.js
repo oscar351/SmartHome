@@ -14,7 +14,7 @@ const connection = mysql.createConnection({ // DB 연결
     password: 'dlrlals970425',
     database: 'smarthome'
 });
-
+x``
 const app = express();
 
 connection.connect();
