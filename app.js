@@ -152,7 +152,7 @@ const temp_timer = setInterval(() => {
     if(body != undefined) {
     const arr = (body).split(" ");
 
-    if(parseInt(arr[0]) > 10 && temp_count >= 5) {
+    if(parseInt(arr[0]) > 50 && temp_count >= 5) {
       fcm.send(temp_message, function(err, response) {
         if (err) {
           console.log("Something has gone wrong!")
