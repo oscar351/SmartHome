@@ -191,7 +191,7 @@ var server=app.listen(8888, function(){
         // console.log(time + ", " + arr); // Print the data received
       }
     });
-  }, 3000);
+  }, 10000);
 	console.log('Express server listening on port ' + server.address().port);
 });
 

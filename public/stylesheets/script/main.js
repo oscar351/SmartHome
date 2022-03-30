@@ -212,7 +212,7 @@ $(document).ready(function(){
                 }
             }
         });
-    }, 5000);
+    }, 10000);
 
     $.ajax({
         url : "weather",
