@@ -62,11 +62,12 @@ margin: 10px;
     margin-left: 10px;
 }
 
-#left-led, #left-fan, #right-house, #right-out, #center-camera{
+#left-fan, #right-house, #right-out, #center-camera{
     padding: 10px;
     margin: 30px;
     height: 42%;
 }
+
 
 #center-camera{
     height: 91%;
@@ -113,8 +114,11 @@ margin: 10px;
     border-radius: 20px;
 }
 #left-led-data, #left-fan-data{
-    height: 70%;
+    height: 600px;
     border-radius: 30px;
+}
+#left-led{
+    margin-top: 70px;
 }
 
 #left-fan-data #section{
@@ -135,7 +139,8 @@ margin: 10px;
     justify-content:space-between;
     padding: 15px 70px 20px 70px;
     margin: 5px;
-    font-size: 30px;
+    margin-top: 90px;
+    font-size: 45px;
 }
 
 #fanicon{

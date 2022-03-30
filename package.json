@@ -19,6 +19,7 @@
     "ejs": "^2.6.2",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
+    "fcm-node": "^1.6.1",
     "fs": "^0.0.1-security",
     "geoip-lite": "^1.4.3",
     "http": "^0.0.1-security",

@@ -158,6 +158,10 @@ $(document).ready(function(){
                     $('#errormsg').html('');
                     $('#temp1').html(data.Temp);
                     $('#humi1').html(data.Humi);
+                    
+                    if(parseInt(data.Temp) > 50){
+                        alert('온도가 너무 높습니다!');
+                    }
                 }
             }
         });
